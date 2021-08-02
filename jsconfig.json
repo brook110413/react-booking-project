@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@Components/*": ["src/components/*"],
+      "@Style/*": ["src/style/*"],
+      "@Layout/*": ["src/layout/*"],
+      "@Pages/*": ["src/pages/*"],
+      "@Actions/*": ["src/actions/*"],
+      "@Reducers/*": ["src/reducers/*"],
+    }
+  },
+  "exclude": ["node_modules"]
+}
