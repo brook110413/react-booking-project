@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Navbar, Nav, Image, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Image, NavDropdown, Container } from 'react-bootstrap';
 import styled from 'styled-components';
 import { AiOutlineGlobal } from 'react-icons/ai';
 
@@ -9,7 +9,7 @@ import { device } from '@Style/browser';
 
 const Header = (props) => {
   return (
-    <div>
+    <Container>
       <StyledNavbar expand="md">
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Brand href="#">
@@ -33,16 +33,12 @@ const Header = (props) => {
           Login
         </StyledLoginLink>
       </StyledNavbar>
-    </div>
+    </Container>
   );
 };
 
 const StyledNavbar = styled(Navbar)`
-  padding: 24px 85px;
-
-  ${device.tablet} {
-    padding: 24px 40px;
-  }
+  padding: 24px 0;
 
   .nav-link {
     color: ${color.black} !important;

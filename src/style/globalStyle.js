@@ -69,6 +69,10 @@ body {
   li {
     list-style: none;
   }
+
+  .open-sans {
+    font-family: 'Open Sans', sans-serif;
+  }
 `;
 
 export default GlobalStyle;

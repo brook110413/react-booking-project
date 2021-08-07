@@ -2,6 +2,9 @@
 import 'bootstrap/scss/bootstrap.scss';
 import '@Style/variables.scss';
 
+// Import Swiper styles
+import 'swiper/swiper-bundle.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
