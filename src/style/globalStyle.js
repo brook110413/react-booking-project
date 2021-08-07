@@ -2,7 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   // css reset
-
   html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -47,6 +46,10 @@ table {
 	border-spacing: 0;
 }
 
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
   *, *::before, *::after {
     box-sizing: border-box;
   }
@@ -56,6 +59,8 @@ table {
     height:auto; 
   }
   a {
+    text-decoration: none;
+    
     &:hover {
       text-decoration: none;
     }
