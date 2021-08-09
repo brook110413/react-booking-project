@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { AiOutlineGlobal } from 'react-icons/ai';
 
 import color from '@Style/color';
-import { device } from '@Style/browser';
 
 const Header = (props) => {
   return (

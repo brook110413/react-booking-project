@@ -21,16 +21,10 @@ const Footer = (props) => {
         </ul>
       </StyledContainer>
     </StyledWrapper>
-    // <Container>
-    // </Container>
   );
 };
 
 const StyledWrapper = styled.div`
-  /* padding: 24px 0;
-  display: flex;
-  justify-content: space-between;
-  width: 100%; */
   background-color: ${color.primary};
   color: ${color.white};
 
