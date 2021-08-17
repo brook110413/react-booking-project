@@ -1,13 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { Dropdown } from 'react-bootstrap';
+import styled, { css } from 'styled-components';
+import { Dropdown, Button } from 'react-bootstrap';
 import { IoLocationSharp } from 'react-icons/io5';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import BasicCheckedSelect from '@Components/basic/BasicCheckedSelect';
 import color from '@Style/color';
 
 const SearchBox = (props) => {
+  const history = useHistory();
+  const location = useLocation();
+
   const options = [
     { value: 'chocolate', label: 'Chocolate' },
     { value: 'strawberry', label: 'Strawberry' },
@@ -15,7 +18,7 @@ const SearchBox = (props) => {
   ];
 
   return (
-    <StyledSearchBoxContainer>
+    <StyledSearchBoxContainer pathname={location.pathname}>
       <Dropdown className="dropdown">
         <Dropdown.Toggle variant="light">
           <IoLocationSharp className="me-3" size={20} />
@@ -28,6 +31,10 @@ const SearchBox = (props) => {
           <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
+
+      <Button type="button" onClick={() => history.push('/searchResult')}>
+        SEARCH
+      </Button>
 
       {/* <BasicCheckedSelect options={options} />   */}
 
@@ -47,6 +54,13 @@ const StyledSearchBoxContainer = styled.div`
   margin: 0 auto;
   transform: translateY(-50px);
 
+  ${(props) =>
+    props.pathname === '/searchResult' &&
+    css`
+      max-width: 100%;
+      transform: translateY(0);
+    `}
+
   .dropdown {
     button {
       padding: 16px;
@@ -64,7 +78,5 @@ const StyledSearchBoxContainer = styled.div`
     }
   }
 `;
-
-SearchBox.propTypes = {};
 
 export default SearchBox;

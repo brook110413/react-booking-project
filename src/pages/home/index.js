@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Container } from 'react-bootstrap';
 
 import color from '@Style/color';
-import SearchBox from './components/SearchBox';
+// import SearchBox from '../../components/basic/SearchBox';
+import SearchBox from '@Basic/SearchBox';
 import TopChoiceComponent from './components/TopChoiceComponent';
 import PopularDestinationComponent from './components/PopularDestinationComponent';
 import GetInspirationComponent from './components/GetInspirationComponent';
@@ -56,7 +56,5 @@ const StyledContainer = styled(Container)`
   flex-direction: column;
   gap: 72px;
 `;
-
-Home.propTypes = {};
 
 export default Home;

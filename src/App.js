@@ -1,11 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import GlobalStyle from '@Style/globalStyle';
 import Layout from '@/layout/index';
+
 import Home from '@Pages/home';
+import SearchResult from '@Pages/searchResult';
 
 const App = (props) => {
   return (
@@ -17,6 +18,7 @@ const App = (props) => {
             <Switch>
               <Redirect exact path="/" to="/home" />
               <Route path="/home" component={Home} />
+              <Route path="/searchResult" component={SearchResult} />
             </Switch>
           </StyledMain>
         </Layout>
@@ -28,7 +30,5 @@ const App = (props) => {
 const StyledMain = styled.div`
   flex: 1;
 `;
-
-App.propTypes = {};
 
 export default App;

@@ -31,7 +31,7 @@ const GetInspirationComponent = (props) => {
 
       <StyledInspirationContainer>
         {inspirationList.map((item) => (
-          <div className="item">
+          <div className="item" key={item.title}>
             <div>
               <Image src={`images/${item.img}.jpg`} />
             </div>

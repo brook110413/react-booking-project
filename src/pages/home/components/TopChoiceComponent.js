@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import SwiperCore, { Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { AiFillStar } from 'react-icons/ai';
@@ -81,14 +80,18 @@ const TopChoiceComponent = (props) => {
           disableOnInteraction: false,
         }}
       >
-        {topChoicesList.map((item) => (
-          <SwiperSlide key={item.img} className="open-sans">
+        {topChoicesList.map((item, i) => (
+          <SwiperSlide className="open-sans" key={`slide-${i}`}>
             <StyledTopChoicesContainer>
               <Image src={`images/${item.img}.jpg`} className="mb-2" />
               <div className="content">
                 <div>{item.title}</div>
                 <div className="rank">
-                  <span>{item.rankIcon}</span>
+                  <div>
+                    {item.rankIcon.map((icon, i) => (
+                      <span key={`icon-${i}`}>{icon}</span>
+                    ))}
+                  </div>
                   <span style={{ color: color.gray }}>
                     {`${item.rank}.0`} ・
                   </span>
@@ -130,6 +133,6 @@ const StyledTopChoicesContainer = styled.div`
   }
 `;
 
-TopChoiceComponent.propTypes = {};
+TopChoiceComponent.prototype = {};
 
 export default TopChoiceComponent;
