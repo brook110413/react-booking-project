@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Form, Image } from 'react-bootstrap';
 import styled from 'styled-components';
 import { AiFillStar } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 import SearchBox from '@Basic/SearchBox';
 import color from '@Style/color';
@@ -199,12 +200,14 @@ const SearchResult = () => {
 
   return (
     <StyledWrapper>
-      <Container>
-        <SearchBox />
-        <div className="h2 fw-bold py-4 m-0">Bangkok</div>
-      </Container>
+      <StyledSearchBoxWrapper>
+        <Container>
+          <SearchBox />
+        </Container>
+      </StyledSearchBoxWrapper>
 
       <Container>
+        <div className="h2 fw-bold py-4 m-0">Bangkok</div>
         <Row>
           <Col lg={4}>
             <div className="aside">
@@ -228,65 +231,67 @@ const SearchResult = () => {
           </Col>
           <Col lg={8}>
             {hotelList.map((item) => (
-              <div className="hotelItemBox" key={item.name}>
-                <Image
-                  src={`images/${item.img}.jpg`}
-                  className="hotelItemImg"
-                />
+              <div className="hotelItemWrapper" key={item.name}>
+                <StyledLink to="/detail">
+                  <Image
+                    src={`images/${item.img}.jpg`}
+                    className="hotelItemImg"
+                  />
 
-                <div className="hotelItemMain">
-                  <div>
-                    <div className="d-flex justify-content-between">
-                      <div className="hotelItemLocation open-sans">
-                        <span style={{ color: color.primary }}>
-                          {item.location}
-                        </span>
-                        <span>・{item.distance}</span>
-                      </div>
-                      <div className="d-flex align-items-center">
-                        {item.rankIcon.map((icon, i) => (
-                          <span key={`icon-${i}`}>{icon}</span>
-                        ))}
-                        <span
-                          className="rank open-sans ms-1"
-                          style={{ color: color.gray }}
-                        >
-                          {item.rank}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="hotelItemName h4 m-0 fw-bold">
-                      {item.name}
-                    </div>
-                  </div>
-
-                  <div style={{ color: color.gray }}>
-                    <div
-                      className="fw-bold mb-1"
-                      style={{ color: color.darkGray }}
-                    >
-                      {item.roomType}
-                    </div>
-                    <div>{item.roomTypeDetail}</div>
-                  </div>
-
-                  <div className="d-flex justify-content-between">
-                    <div className="d-flex align-items-start">
-                      {item.tags.map((tag, i) => (
-                        <div className="hotelTag" key={`tag-${i}`}>
-                          {tag}
+                  <div className="hotelItemMain">
+                    <div>
+                      <div className="d-flex justify-content-between">
+                        <div className="hotelItemLocation open-sans">
+                          <span style={{ color: color.primary }}>
+                            {item.location}
+                          </span>
+                          <span>・{item.distance}</span>
                         </div>
-                      ))}
+                        <div className="d-flex align-items-center">
+                          {item.rankIcon.map((icon, i) => (
+                            <span key={`icon-${i}`}>{icon}</span>
+                          ))}
+                          <span
+                            className="rank open-sans ms-1"
+                            style={{ color: color.gray }}
+                          >
+                            {item.rank}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="hotelItemName h4 m-0 fw-bold">
+                        {item.name}
+                      </div>
                     </div>
 
-                    <div className="text-end">
-                      <div className="open-sans" style={{ fontSize: 12 }}>
-                        per night
+                    <div style={{ color: color.gray }}>
+                      <div
+                        className="fw-bold mb-1"
+                        style={{ color: color.darkGray }}
+                      >
+                        {item.roomType}
                       </div>
-                      <div className="h4 m-0 fw-bold">{`TWD ${item.cost}`}</div>
+                      <div>{item.roomTypeDetail}</div>
+                    </div>
+
+                    <div className="d-flex justify-content-between">
+                      <div className="d-flex align-items-start">
+                        {item.tags.map((tag, i) => (
+                          <div className="hotelTag" key={`tag-${i}`}>
+                            {tag}
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="text-end">
+                        <div className="open-sans" style={{ fontSize: 12 }}>
+                          per night
+                        </div>
+                        <div className="h4 m-0 fw-bold">{`TWD ${item.cost}`}</div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </StyledLink>
               </div>
             ))}
           </Col>
@@ -332,8 +337,7 @@ const StyledWrapper = styled.div`
     }
   }
 
-  .hotelItemBox {
-    display: flex;
+  .hotelItemWrapper {
     border-bottom: 1px solid ${color.secondary};
     margin-bottom: 24px;
 
@@ -350,7 +354,7 @@ const StyledWrapper = styled.div`
     }
 
     .hotelItemMain {
-      padding: 16px 16px 32px;
+      padding: 16px 16px 0;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -368,6 +372,23 @@ const StyledWrapper = styled.div`
         margin-right: 4px;
       }
     }
+  }
+`;
+
+const StyledSearchBoxWrapper = styled.div`
+  background-color: ${color.secondary};
+  position: sticky;
+  top: 85px;
+  z-index: 10;
+`;
+
+const StyledLink = styled(Link)`
+  display: flex;
+  margin-bottom: 24px;
+  border-radius: 8px;
+
+  &:hover {
+    box-shadow: 5px 5px 5px ${color.secondary};
   }
 `;
 

@@ -55,10 +55,11 @@ const StyledSearchBoxContainer = styled.div`
   transform: translateY(-50px);
 
   ${(props) =>
-    props.pathname === '/searchResult' &&
+    (props.pathname === '/searchResult' || props.pathname === '/detail') &&
     css`
       max-width: 100%;
       transform: translateY(0);
+      padding: 24px 0;
     `}
 
   .dropdown {

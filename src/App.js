@@ -7,6 +7,7 @@ import Layout from '@/layout/index';
 
 import Home from '@Pages/home';
 import SearchResult from '@Pages/searchResult';
+import Detail from '@Pages/detail';
 
 const App = (props) => {
   return (
@@ -19,6 +20,7 @@ const App = (props) => {
               <Redirect exact path="/" to="/home" />
               <Route path="/home" component={Home} />
               <Route path="/searchResult" component={SearchResult} />
+              <Route path="/detail" component={Detail} />
             </Switch>
           </StyledMain>
         </Layout>

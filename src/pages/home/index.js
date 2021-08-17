@@ -30,7 +30,7 @@ const Home = (props) => {
 const StyledWrapper = styled.div`
   .banner {
     height: 320px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
       url(images/index-banner.jpg);
     background-position: center;
     background-repeat: no-repeat;

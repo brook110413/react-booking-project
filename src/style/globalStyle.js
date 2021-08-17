@@ -60,9 +60,11 @@ body {
   }
   a {
     text-decoration: none;
+    color: inherit;
     
     &:hover {
       text-decoration: none;
+      color: inherit;
     }
   }
 
