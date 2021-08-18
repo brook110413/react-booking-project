@@ -3,13 +3,12 @@ import styled from 'styled-components';
 import { Container } from 'react-bootstrap';
 
 import color from '@Style/color';
-// import SearchBox from '../../components/basic/SearchBox';
 import SearchBox from '@Basic/SearchBox';
 import TopChoiceComponent from './components/TopChoiceComponent';
 import PopularDestinationComponent from './components/PopularDestinationComponent';
 import GetInspirationComponent from './components/GetInspirationComponent';
 
-const Home = (props) => {
+const Home = () => {
   return (
     <StyledWrapper>
       <div className="banner">Discover your ideal hotel</div>
@@ -56,5 +55,7 @@ const StyledContainer = styled(Container)`
   flex-direction: column;
   gap: 72px;
 `;
+
+Home.prototype = {};
 
 export default Home;
