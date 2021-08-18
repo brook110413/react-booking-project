@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/react-booking-project/static/css/main.bc50b7a2.chunk.css",
+    "main.js": "/react-booking-project/static/js/main.f13ae533.chunk.js",
+    "main.js.map": "/react-booking-project/static/js/main.f13ae533.chunk.js.map",
+    "runtime-main.js": "/react-booking-project/static/js/runtime-main.4e693032.js",
+    "runtime-main.js.map": "/react-booking-project/static/js/runtime-main.4e693032.js.map",
+    "static/css/2.412587bf.chunk.css": "/react-booking-project/static/css/2.412587bf.chunk.css",
+    "static/js/2.10988f55.chunk.js": "/react-booking-project/static/js/2.10988f55.chunk.js",
+    "static/js/2.10988f55.chunk.js.map": "/react-booking-project/static/js/2.10988f55.chunk.js.map",
+    "index.html": "/react-booking-project/index.html",
+    "static/css/2.412587bf.chunk.css.map": "/react-booking-project/static/css/2.412587bf.chunk.css.map",
+    "static/css/main.bc50b7a2.chunk.css.map": "/react-booking-project/static/css/main.bc50b7a2.chunk.css.map",
+    "static/js/2.10988f55.chunk.js.LICENSE.txt": "/react-booking-project/static/js/2.10988f55.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4e693032.js",
+    "static/css/2.412587bf.chunk.css",
+    "static/js/2.10988f55.chunk.js",
+    "static/css/main.bc50b7a2.chunk.css",
+    "static/js/main.f13ae533.chunk.js"
+  ]
+}
