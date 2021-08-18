@@ -12,7 +12,7 @@ import GetInspirationComponent from './components/GetInspirationComponent';
 const Home = (props) => {
   return (
     <StyledWrapper>
-      <div className="banner">Discover your ideal hotel 123</div>
+      <div className="banner">Discover your ideal hotel</div>
 
       <SearchBox />
 
