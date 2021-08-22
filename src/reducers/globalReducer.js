@@ -28,6 +28,7 @@ const globalReducer = (state = initState, action) => {
         ...state,
         count: action.payload,
       };
+
     default:
       return state;
   }

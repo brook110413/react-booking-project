@@ -8,6 +8,7 @@ import Layout from '@/layout/index';
 import Home from '@Pages/home';
 import SearchResult from '@Pages/searchResult';
 import Detail from '@Pages/detail';
+import Reserve from '@Pages/reserve';
 
 const App = (props) => {
   return (
@@ -21,6 +22,7 @@ const App = (props) => {
               <Route path="/home" component={Home} />
               <Route path="/searchResult" component={SearchResult} />
               <Route path="/detail" component={Detail} />
+              <Route path="/reserve" component={Reserve} />
             </Switch>
           </StyledMain>
         </Layout>

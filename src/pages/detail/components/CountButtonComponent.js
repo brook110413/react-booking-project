@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { MdAdd, MdRemove, MdCheck } from 'react-icons/md';
-// import { setCount } from '@/actions/globalAction';
+import { MdAdd, MdRemove } from 'react-icons/md';
 
 import { setCount } from '@Actions/globalAction';
 
@@ -12,11 +10,8 @@ const CountButtonComponent = (props) => {
 
   const count = useSelector((state) => state.global.count);
 
-  // const [count, setCount] = useState(0);
-
   const addCount = () => {
     dispatch(setCount(count + 1));
-    // setCount((count) => count + 1);
   };
 
   const minusCount = () => {
@@ -25,7 +20,6 @@ const CountButtonComponent = (props) => {
     }
 
     dispatch(setCount(count - 1));
-    // setCount((count) => count - 1);
   };
 
   return (
@@ -33,7 +27,7 @@ const CountButtonComponent = (props) => {
       <button
         type="button"
         className="me-3"
-        onClick={minusCount}
+        onClick={() => minusCount()}
         disabled={count <= 0}
       >
         <MdRemove size={24} />

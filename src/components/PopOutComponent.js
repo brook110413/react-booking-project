@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { Container, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { setCount } from '@Actions/globalAction';
 
 const PopOutComponent = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const count = useSelector((state) => state.global.count);
@@ -29,10 +31,18 @@ const PopOutComponent = () => {
         </div>
 
         <div className="btnGroup open-sans">
-          <Button variant="outline-light" type="button" onClick={initCount}>
+          <Button
+            variant="outline-light"
+            type="button"
+            onClick={() => initCount()}
+          >
             Cancel
           </Button>
-          <Button variant="primary" type="button">
+          <Button
+            variant="primary"
+            type="button"
+            onClick={() => history.push('/reserve')}
+          >
             Reserve
           </Button>
         </div>
