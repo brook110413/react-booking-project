@@ -27,6 +27,7 @@ const Footer = (props) => {
 const StyledWrapper = styled.div`
   background-color: ${color.primary};
   color: ${color.white};
+  /* margin-top: 24px; */
 
   .copyright {
     margin-right: 64px;

@@ -2,7 +2,8 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
-import SearchBox from '@Basic/SearchBox';
+// import SearchBox from '@Basic/SearchBox';
+import SearchBox from '@Components/SearchBox';
 import color from '@Style/color';
 
 import AsideFilterComponent from './components/AsideFilterComponent';

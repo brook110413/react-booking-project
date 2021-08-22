@@ -42,6 +42,8 @@ const StyledWrapper = styled.div`
   padding: 0 24px;
   background-color: ${color.secondary};
   border-radius: 8px;
+  /* position: sticky;
+  top: 190px; */
 
   .asideItemBox {
     padding: 24px 0;

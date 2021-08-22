@@ -1,4 +1,4 @@
-import { SET_CHOSEN_HOTEL } from '@/actions/globalAction';
+import { SET_CHOSEN_HOTEL, SET_COUNT } from '@/actions/globalAction';
 
 const initState = {
   chosenHotel: {
@@ -13,6 +13,7 @@ const initState = {
     rankIcon: ['\u2605', '\u2605', '\u2605', '\u2605'],
     cost: '1,980',
   },
+  count: 0,
 };
 
 const globalReducer = (state = initState, action) => {
@@ -21,6 +22,11 @@ const globalReducer = (state = initState, action) => {
       return {
         ...state,
         chosenHotel: action.payload,
+      };
+    case SET_COUNT:
+      return {
+        ...state,
+        count: action.payload,
       };
     default:
       return state;

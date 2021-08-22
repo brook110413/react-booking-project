@@ -16,48 +16,53 @@ import {
   MdPerson,
 } from 'react-icons/md';
 
-import SearchBox from '@Basic/SearchBox';
+// import SearchBox from '@Basic/SearchBox';
+import SearchBox from '@Components/SearchBox';
+import PopOutComponent from '@Components/PopOutComponent';
 import color from '@Style/color';
+
+import CountButtonComponent from './components/CountButtonComponent';
 
 // install Swiper modules
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 const Detail = () => {
   const chosenHotel = useSelector((state) => state.global.chosenHotel);
+  const count = useSelector((state) => state.global.count);
 
   const imgList = ['Rachada1', 'Rachada2', 'Rachada3', 'Rachada4'];
 
   const roomTypeList = [
-    {
-      img: 'roomA',
-      name: 'Deluxe Double Room A',
-      type: '1 bed (Queen size)',
-      service: [
-        'Wi-fi',
-        'Breakfast',
-        'Television',
-        'Air Conditioner',
-        'Room Service',
-        'Smoke Free',
-      ],
-      sleeps: [<MdPerson size={24} />, <MdPerson size={24} />],
-      price: '1,490',
-    },
-    {
-      img: 'roomB',
-      name: 'Deluxe Double Room B',
-      type: '1 bed (Queen size)',
-      service: [
-        'Wi-fi',
-        'Breakfast',
-        'Television',
-        'Air Conditioner',
-        'Room Service',
-        'Smoke Free',
-      ],
-      sleeps: [<MdPerson size={24} />, <MdPerson size={24} />],
-      price: '1,600',
-    },
+    // {
+    //   img: 'roomA',
+    //   name: 'Deluxe Double Room A',
+    //   type: '1 bed (Queen size)',
+    //   service: [
+    //     'Wi-fi',
+    //     'Breakfast',
+    //     'Television',
+    //     'Air Conditioner',
+    //     'Room Service',
+    //     'Smoke Free',
+    //   ],
+    //   sleeps: [<MdPerson size={24} />, <MdPerson size={24} />],
+    //   price: '1,490',
+    // },
+    // {
+    //   img: 'roomB',
+    //   name: 'Deluxe Double Room B',
+    //   type: '1 bed (Queen size)',
+    //   service: [
+    //     'Wi-fi',
+    //     'Breakfast',
+    //     'Television',
+    //     'Air Conditioner',
+    //     'Room Service',
+    //     'Smoke Free',
+    //   ],
+    //   sleeps: [<MdPerson size={24} />, <MdPerson size={24} />],
+    //   price: '1,600',
+    // },
     {
       img: chosenHotel.img,
       name: 'Deluxe Suite with Pool',
@@ -222,12 +227,17 @@ const Detail = () => {
                       per night
                     </div>
                   </td>
+
+                  <td>
+                    <CountButtonComponent />
+                  </td>
                 </tr>
               ))}
             </tbody>
           </StyledTable>
         </div>
       </StyledContainer>
+      <PopOutComponent />
     </StyledWrapper>
   );
 };
