@@ -1,7 +1,6 @@
 import React from 'react';
 import SwiperCore, { Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { AiFillStar } from 'react-icons/ai';
 import styled from 'styled-components';
 import { Image } from 'react-bootstrap';
 
@@ -16,13 +15,7 @@ const TopChoiceComponent = (props) => {
       img: 'top1',
       title: 'Hotel Aqua',
       rank: 5,
-      rankIcon: [
-        <AiFillStar />,
-        <AiFillStar />,
-        <AiFillStar />,
-        <AiFillStar />,
-        <AiFillStar />,
-      ],
+      rankIcon: ['\u2605', '\u2605', '\u2605', '\u2605', '\u2605'],
       reviews: '2K',
       price: '2,480',
     },
@@ -30,12 +23,7 @@ const TopChoiceComponent = (props) => {
       img: 'top2',
       title: 'Mr. Kawasaki Inn',
       rank: 4,
-      rankIcon: [
-        <AiFillStar />,
-        <AiFillStar />,
-        <AiFillStar />,
-        <AiFillStar />,
-      ],
+      rankIcon: ['\u2605', '\u2605', '\u2605', '\u2605'],
       reviews: '500',
       price: '3,380',
     },
@@ -43,12 +31,7 @@ const TopChoiceComponent = (props) => {
       img: 'top3',
       title: 'Weekly Paradise',
       rank: 4,
-      rankIcon: [
-        <AiFillStar />,
-        <AiFillStar />,
-        <AiFillStar />,
-        <AiFillStar />,
-      ],
+      rankIcon: ['\u2605', '\u2605', '\u2605', '\u2605'],
       reviews: '470',
       price: '4,780',
     },
@@ -56,12 +39,7 @@ const TopChoiceComponent = (props) => {
       img: 'top4',
       title: 'Beast Hotel',
       rank: 4,
-      rankIcon: [
-        <AiFillStar />,
-        <AiFillStar />,
-        <AiFillStar />,
-        <AiFillStar />,
-      ],
+      rankIcon: ['\u2605', '\u2605', '\u2605', '\u2605'],
       reviews: 283,
       price: '1,980',
     },

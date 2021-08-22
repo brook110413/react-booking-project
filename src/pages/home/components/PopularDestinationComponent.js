@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import color from '@Style/color';
@@ -64,7 +63,7 @@ const StyledDestinationContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 24px 30px;
+  gap: 24px 25.8px;
 
   .item {
     width: 31.79%;
