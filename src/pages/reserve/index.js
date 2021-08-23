@@ -111,7 +111,10 @@ const Reserve = () => {
                 </div>
               </div>
 
-              <div className="d-flex justify-content-between pb-4 fw-bold">
+              <div
+                className="d-flex justify-content-between align-items-center fw-bold"
+                style={{ height: 105 }}
+              >
                 <span>Total</span>
                 <span>{`TWD ${(
                   chosenHotel.cost * (count !== 0 ? count : 2) +
@@ -147,7 +150,7 @@ const StyledWrapper = styled.div`
   .bookingDetailContainer {
     background-color: ${color.secondary};
     border-radius: 8px;
-    padding: 0 24px 42px;
+    padding: 0 24px;
     /* margin-bottom: 24px; */
 
     .detailWrapper {
@@ -157,6 +160,7 @@ const StyledWrapper = styled.div`
 
       &:nth-child(2) {
         padding-top: 0;
+        margin-bottom: 0;
       }
 
       .detailTitle {
