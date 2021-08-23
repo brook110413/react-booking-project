@@ -7,8 +7,13 @@ import color from '@Style/color';
 const AsideFilterComponent = (props) => {
   const filterList = [
     {
-      title: 'Deals',
-      selectList: ['Free cancellation', 'No prepayment', 'Special offers'],
+      title: 'Room Type',
+      selectList: [
+        'Deluxe Double Room',
+        'Standard Double Room',
+        'Twin Room',
+        'Deluxe Twin Room',
+      ],
     },
     {
       title: 'Popular filter',
