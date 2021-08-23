@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { Container, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';

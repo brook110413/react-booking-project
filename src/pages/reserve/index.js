@@ -131,7 +131,7 @@ const Reserve = () => {
 };
 
 const StyledWrapper = styled.div`
-  padding: 24px 0 0 0;
+  padding: 48px 0 0 0;
 
   .FormTitle {
     font-size: 32px;
