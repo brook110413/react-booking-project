@@ -12,6 +12,7 @@ const PopOutComponent = () => {
   const dispatch = useDispatch();
 
   const count = useSelector((state) => state.global.count);
+  const chosenHotel = useSelector((state) => state.global.chosenHotel);
 
   const initCount = () => {
     dispatch(setCount(0));
@@ -26,7 +27,7 @@ const PopOutComponent = () => {
             style={{ fontSize: 12 }}
           >{`1 room ． ${count} night`}</div>
           <div style={{ fontSize: 24, fontWeight: 'bold' }}>
-            TWD {count * 1980}
+            TWD {(count * chosenHotel.cost).toLocaleString()}
           </div>
         </div>
 

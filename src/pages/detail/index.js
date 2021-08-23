@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container, Image, Row, Col, Table } from 'react-bootstrap';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
+import { Container, Image, Table } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import {
   MdWifi,
@@ -16,20 +14,16 @@ import {
   MdPerson,
 } from 'react-icons/md';
 
-// import SearchBox from '@Basic/SearchBox';
 import SearchBox from '@Components/SearchBox';
 import PopOutComponent from '@Components/PopOutComponent';
 import color from '@Style/color';
 
 import CountButtonComponent from './components/CountButtonComponent';
-
-// install Swiper modules
-SwiperCore.use([Autoplay, Pagination, Navigation]);
+import SwiperComponent from './components/SwiperComponent';
+import Main from './components/Main';
 
 const Detail = () => {
   const chosenHotel = useSelector((state) => state.global.chosenHotel);
-
-  const imgList = ['Rachada1', 'Rachada2', 'Rachada3', 'Rachada4'];
 
   const roomTypeList = [
     // {
@@ -90,69 +84,9 @@ const Detail = () => {
       </StyledSearchBoxWrapper>
 
       <StyledContainer>
-        <Swiper
-          spaceBetween={30}
-          slidesPerView={4}
-          loop={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          wrapperTag="ul"
-        >
-          {imgList.map((img, i) => (
-            <SwiperSlide key={`img-${i}`} tag="li">
-              {i === 0 ? (
-                <Image
-                  src={`images/${chosenHotel.img}.jpg`}
-                  className="imgList"
-                />
-              ) : (
-                <Image src={`images/${img}.jpg`} className="imgList" />
-              )}
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <SwiperComponent />
 
-        <Row>
-          <Col lg={7}>
-            <div className="hotelMain">
-              <div className="d-flex align-items-center mb-2">
-                <div className="hotelTitle">{chosenHotel.name}</div>
-                <div className="me-1">
-                  {chosenHotel.rankIcon.map((icon, i) => (
-                    <span key={`icon-${i}`}>{icon}</span>
-                  ))}
-                </div>
-                <span
-                  className="rank open-sans ms-1"
-                  style={{ color: color.gray }}
-                >
-                  {chosenHotel.rank}
-                </span>
-              </div>
-              <div
-                className="open-sans mb-4"
-                style={{ color: color.primary, fontSize: 14 }}
-              >
-                318 Phaya Thai Road, Ratchathewi, Phaya Thai, 10400 Bangkok,
-                Thailand
-              </div>
-
-              <div
-                className="open-sans"
-                style={{ color: color.darkGray, fontSize: 14, lineHeight: 1.5 }}
-              >
-                The Rachada Hotel is an establishment that provides paid lodging
-                on a short-term basis. Facilities provided may range from a
-                modest-quality mattress in a small room to large suites with
-                bigger, higher-quality beds, a dresser, a refrigerator and other
-                kitchen facilities, upholstered chairs, a flat screen
-                television, and en-suite bathrooms.
-              </div>
-            </div>
-          </Col>
-        </Row>
+        <Main />
 
         <div className="roomTypesWrapper">
           <div className="roomTypesTitle">Select your room</div>
@@ -242,23 +176,6 @@ const Detail = () => {
 };
 
 const StyledWrapper = styled.div`
-  .imgList {
-    height: 300px;
-    object-position: center 75%;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-
-  .hotelMain {
-    padding: 24px 0 72px;
-
-    .hotelTitle {
-      font-size: 32px;
-      font-weight: bold;
-      margin-right: 16px;
-    }
-  }
-
   .roomTypesWrapper {
     .roomTypesTitle {
       font-size: 24px;
