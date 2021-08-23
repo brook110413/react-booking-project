@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 import color from '@Style/color';
+import { setReserveInfo } from '@Actions/globalAction';
 
-const ReserveForm = (props) => {
+const ReserveForm = ({ setPage }) => {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -13,7 +18,8 @@ const ReserveForm = (props) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    setPage(1);
+    dispatch(setReserveInfo(data));
   };
 
   return (
@@ -89,6 +95,9 @@ const StyledButton = styled(Button)`
   height: 56px;
 `;
 
-ReserveForm.propTypes = {};
+ReserveForm.propTypes = {
+  // 成功預定的內頁
+  setPage: PropTypes.func.isRequired,
+};
 
 export default ReserveForm;

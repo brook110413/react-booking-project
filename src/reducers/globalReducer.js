@@ -1,4 +1,8 @@
-import { SET_CHOSEN_HOTEL, SET_COUNT } from '@/actions/globalAction';
+import {
+  SET_CHOSEN_HOTEL,
+  SET_COUNT,
+  SET_RESERVE_INFO,
+} from '@/actions/globalAction';
 
 const initState = {
   chosenHotel: {
@@ -14,6 +18,7 @@ const initState = {
     cost: 1980,
   },
   count: 0,
+  reserveInfo: {},
 };
 
 const globalReducer = (state = initState, action) => {
@@ -28,7 +33,11 @@ const globalReducer = (state = initState, action) => {
         ...state,
         count: action.payload,
       };
-
+    case SET_RESERVE_INFO:
+      return {
+        ...state,
+        reserveInfo: action.payload,
+      };
     default:
       return state;
   }
