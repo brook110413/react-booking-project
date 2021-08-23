@@ -18,7 +18,9 @@ const Layout = (props) => {
   };
 
   useEffect(() => {
-    initCount();
+    if (location.pathname !== '/reserve') {
+      initCount();
+    }
   }, [location.pathname]);
 
   return (

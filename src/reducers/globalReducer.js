@@ -11,7 +11,7 @@ const initState = {
     tags: ['Free cancellation', 'No prepayment'],
     rank: '4.0 (283)',
     rankIcon: ['\u2605', '\u2605', '\u2605', '\u2605'],
-    cost: '1,980',
+    cost: 1980,
   },
   count: 0,
 };

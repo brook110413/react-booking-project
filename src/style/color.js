@@ -5,6 +5,7 @@ const color = {
   darkGray: '#00000099',
   primary: '#6c51e2',
   secondary: '#F1F0F8',
+  error: '#ff7171',
 };
 
 export default color;

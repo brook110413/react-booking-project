@@ -22,7 +22,7 @@ const HotelItem = (props) => {
       tags: ['Free cancellation', 'No prepayment'],
       rank: '4.0 (283)',
       rankIcon: ['\u2605', '\u2605', '\u2605', '\u2605'],
-      cost: '1,980',
+      cost: 1980,
     },
 
     {
@@ -35,7 +35,7 @@ const HotelItem = (props) => {
       tags: ['Free cancellation'],
       rank: '5.0 (121)',
       rankIcon: ['\u2605', '\u2605', '\u2605', '\u2605', '\u2605'],
-      cost: '1,680',
+      cost: 1680,
     },
 
     {
@@ -48,7 +48,7 @@ const HotelItem = (props) => {
       tags: ['Free cancellation'],
       rank: '4.0 (325)',
       rankIcon: ['\u2605', '\u2605', '\u2605', '\u2605'],
-      cost: '2,460',
+      cost: 2460,
     },
 
     {
@@ -61,7 +61,7 @@ const HotelItem = (props) => {
       tags: ['No prepayment'],
       rank: '4.0 (204)',
       rankIcon: ['\u2605', '\u2605', '\u2605', '\u2605'],
-      cost: '2,880',
+      cost: 2880,
     },
 
     {
@@ -74,7 +74,7 @@ const HotelItem = (props) => {
       tags: ['No prepayment'],
       rank: '5.0 (189)',
       rankIcon: ['\u2605', '\u2605', '\u2605', '\u2605', '\u2605'],
-      cost: '1,890',
+      cost: 1890,
     },
 
     {
@@ -87,7 +87,7 @@ const HotelItem = (props) => {
       tags: ['Free cancellation'],
       rank: '4.0 (112)',
       rankIcon: ['\u2605', '\u2605', '\u2605', '\u2605'],
-      cost: '2,090',
+      cost: 2090,
     },
 
     {
@@ -100,7 +100,7 @@ const HotelItem = (props) => {
       tags: ['Free cancellation', 'No prepayment'],
       rank: '5.0 (102)',
       rankIcon: ['\u2605', '\u2605', '\u2605', '\u2605', '\u2605'],
-      cost: '880',
+      cost: 880,
     },
 
     {
@@ -113,7 +113,7 @@ const HotelItem = (props) => {
       tags: ['Free cancellation'],
       rank: '3.0 (608)',
       rankIcon: ['\u2605', '\u2605', '\u2605'],
-      cost: '790',
+      cost: 790,
     },
 
     {
@@ -126,7 +126,7 @@ const HotelItem = (props) => {
       tags: ['No prepayment'],
       rank: '4.0 (138)',
       rankIcon: ['\u2605', '\u2605', '\u2605', '\u2605'],
-      cost: '1,700',
+      cost: 1700,
     },
 
     {
@@ -139,7 +139,7 @@ const HotelItem = (props) => {
       tags: ['Free cancellation', 'No prepayment'],
       rank: '3.0 (446)',
       rankIcon: ['\u2605', '\u2605', '\u2605'],
-      cost: '3,450',
+      cost: 3450,
     },
   ];
 
@@ -198,7 +198,7 @@ const HotelItem = (props) => {
                   <div className="open-sans" style={{ fontSize: 12 }}>
                     per night
                   </div>
-                  <div className="h4 m-0 fw-bold">{`TWD ${item.cost}`}</div>
+                  <div className="h4 m-0 fw-bold">{`TWD ${item.cost.toLocaleString()}`}</div>
                 </div>
               </div>
             </div>

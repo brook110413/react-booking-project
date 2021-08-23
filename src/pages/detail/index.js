@@ -28,7 +28,6 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 const Detail = () => {
   const chosenHotel = useSelector((state) => state.global.chosenHotel);
-  const count = useSelector((state) => state.global.count);
 
   const imgList = ['Rachada1', 'Rachada2', 'Rachada3', 'Rachada4'];
 
