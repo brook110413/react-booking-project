@@ -21,10 +21,14 @@ const customStyles = {
   }),
   control: (base, state) => ({
     ...base,
-    height: '38px',
-    backgroundColor: state.isDisabled && `${color.white}`,
-    borderColor: state.isDisabled ? `${color.white}` : `${color.bgShade}`,
-    borderRadius: '6px',
+    height: '56px',
+    width: '232px',
+    // backgroundColor: state.isDisabled && `${color.white}`,
+    // backgroundColor: `${color.white}`,
+    // background: `url(images/icons/icon-check.svg) no-repeat 8px center ${color.white}`,
+    // borderColor: state.isDisabled ? `${color.white}` : `${color.bgShade}`,
+    border: 'none',
+    borderRadius: '4px',
     boxShadow: state.isFocused && `0 0 0 1.5px ${color.primary}`,
 
     '&:hover': {
@@ -33,7 +37,10 @@ const customStyles = {
   }),
   placeholder: (base) => ({
     ...base,
-    color: 'rgba(44, 39, 56, 0.24)',
+    color: `${color.darkGray}`,
+    background: `url(${(<BsStarFill />)}) no-repeat 8px center ${color.white}`,
+    display: 'flex',
+    alignItems: 'center',
   }),
   indicatorSeparator: (base) => ({
     ...base,
@@ -53,13 +60,14 @@ const customStyles = {
   }),
   valueContainer: (base, state) => ({
     ...base,
-    // padding: state.isDisabled ? '6px 0' : '6px 12px',
-    padding: state.isDisabled ? '0' : '0 10px',
-    // height: '36px',
+    // padding: state.isDisabled ? '0' : '0 10px',
+    padding: '0 16px',
+    height: '24px',
   }),
   indicatorsContainer: (base, state) => ({
     ...base,
-    height: '38px',
+    height: '56px',
+    padding: '0 8px 0 0',
   }),
   menuList: (base, state) => ({
     ...base,

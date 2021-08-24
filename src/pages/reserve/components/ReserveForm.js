@@ -11,11 +11,7 @@ import { setReserveInfo } from '@Actions/globalAction';
 const ReserveForm = ({ setPage }) => {
   const dispatch = useDispatch();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data) => {
     setPage(1);
@@ -26,10 +22,12 @@ const ReserveForm = ({ setPage }) => {
     <StyledWrapper>
       <div className="FormTitle">Reservation details</div>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3 align-i">
           <Form.Label>Name</Form.Label>
           <Form.Control
-            {...register('name', { required: 'this is required' })}
+            name="name"
+            ref={register({ required: 'this is required' })}
+            // {...register('name', { required: 'this is required' })}
             type="text"
             placeholder="Enter your name"
           />
@@ -39,7 +37,9 @@ const ReserveForm = ({ setPage }) => {
         <Form.Group className="mb-3">
           <Form.Label>Email</Form.Label>
           <Form.Control
-            {...register('email', { required: 'this is required' })}
+            name="email"
+            ref={register({ required: 'this is required' })}
+            // {...register('email', { required: 'this is required' })}
             type="email"
             placeholder="Enter your email"
           />
@@ -49,13 +49,21 @@ const ReserveForm = ({ setPage }) => {
         <Form.Group className="mb-3">
           <Form.Label>Phone</Form.Label>
           <Form.Control
-            {...register('phone', {
+            name="phone"
+            ref={register({
               required: 'this is required',
               minLength: {
                 value: 10,
                 message: 'your phone number needs 10 numbers',
               },
             })}
+            // {...register('phone', {
+            //   required: 'this is required',
+            //   minLength: {
+            //     value: 10,
+            //     message: 'your phone number needs 10 numbers',
+            //   },
+            // })}
             type="tel"
             placeholder="Enter your phone"
             maxLength="10"
