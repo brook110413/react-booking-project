@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 import color from '@Style/color';
 
 const BookingDetail = (props) => {
   const count = useSelector((state) => state.global.count);
   const chosenHotel = useSelector((state) => state.global.chosenHotel);
+  const searchCondition = useSelector((state) => state.global.searchCondition);
 
   const [vat] = useState(277);
   const [serviceCharge] = useState(396);
@@ -16,10 +18,15 @@ const BookingDetail = (props) => {
       <div className="detailWrapper">
         <div className="detailTitle">Booking details</div>
         <div className="detailContent">
-          <div>{`17 June 2021 - 19 June 2021・${
-            count !== 0 ? count : 2
-          } nights`}</div>
-          <div>2 adults・1 room</div>
+          <div>{`${moment(searchCondition.checkIn).format(
+            'YYYY/MM/DD'
+          )} - ${moment(searchCondition.checkOut).format(
+            'YYYY/MM/DD'
+          )}・${moment(searchCondition.checkOut).diff(
+            searchCondition.checkIn,
+            'days'
+          )} nights`}</div>
+          <div>{`2 adults・${count} room`}</div>
           <div>{chosenHotel.name}</div>
         </div>
       </div>
@@ -31,7 +38,7 @@ const BookingDetail = (props) => {
             <span>{chosenHotel.roomType}</span>
             <span>
               {`TWD ${(
-                chosenHotel.cost * (count !== 0 ? count : 2)
+                chosenHotel.cost * (count !== 0 ? count : 1)
               ).toLocaleString()}`}
             </span>
           </div>

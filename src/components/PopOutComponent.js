@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { Container, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import moment from 'moment';
 
 import { setCount } from '@Actions/globalAction';
 
@@ -12,6 +13,7 @@ const PopOutComponent = () => {
 
   const count = useSelector((state) => state.global.count);
   const chosenHotel = useSelector((state) => state.global.chosenHotel);
+  const searchCondition = useSelector((state) => state.global.searchCondition);
 
   const initCount = () => {
     dispatch(setCount(0));
@@ -24,7 +26,10 @@ const PopOutComponent = () => {
           <div
             className="open-sans mb-2"
             style={{ fontSize: 12 }}
-          >{`1 room ． ${count} night`}</div>
+          >{`${count} room ． ${moment(searchCondition.checkOut).diff(
+            searchCondition.checkIn,
+            'days'
+          )} night`}</div>
           <div style={{ fontSize: 24, fontWeight: 'bold' }}>
             TWD {(count * chosenHotel.cost).toLocaleString()}
           </div>

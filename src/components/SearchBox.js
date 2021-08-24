@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { Button, Form } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
-import { MdLocationOn } from 'react-icons/md';
+import DatePicker from 'react-datepicker';
+import { useDispatch, useSelector } from 'react-redux';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 import BasicCheckedSelect from '@Components/BasicCheckedSelect';
 import color from '@Style/color';
 
+import { setSearchCondition } from '@Actions/globalAction';
+
 const SearchBox = () => {
   const history = useHistory();
   const location = useLocation();
+  const dispatch = useDispatch();
 
-  const { register, handleSubmit, control } = useForm();
+  const { handleSubmit, control } = useForm();
+
+  const searchCondition = useSelector((state) => state.global.searchCondition);
 
   const options = [
     { value: 'Bangkok', label: 'Bangkok' },
@@ -23,76 +31,102 @@ const SearchBox = () => {
   ];
 
   const onSubmit = (data) => {
+    data.destination = data.destination?.value;
     console.log(data);
-    // history.push('/searchResult');
+    if (data.destination && data.checkIn && data.checkOut) {
+      dispatch(setSearchCondition(data));
+    }
+    history.push('/searchResult');
   };
 
   return (
     <StyledSearchBoxContainer pathname={location.pathname}>
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        {/* <BasicCheckedSelect
-          options={options}
-          placeholder={[
-            <MdLocationOn
-              color={color.black}
-              size={24}
-              key={0}
-              className="me-3"
-            />,
-            'Destination',
-          ]}
-          {...register('destination')}
-        /> */}
-
-        {/* <StyledSelect {...register('destination')}>
-          <option value="" disabled selected="selected">
-            Destination
-          </option>
-          {options.map((o) => (
-            <option value={o.value} key={o.value}>
-              {o.label}
-            </option>
-          ))}
-        </StyledSelect> */}
-
+      <StyledForm
+        onSubmit={handleSubmit(onSubmit)}
+        pathname={location.pathname}
+      >
         <Controller
           name="destination"
           control={control}
           as={BasicCheckedSelect}
           options={options}
-          placeholder={[
-            <MdLocationOn
-              color={color.black}
-              size={24}
-              key={0}
-              className="me-3"
-            />,
-            'Destination',
-          ]}
-          // rules={{
-          //   required: true,
-          // }}
+          placeholder="Destination"
+          defaultValue={
+            (location.pathname === '/searchResult' ||
+              location.pathname === '/detail') && {
+              value: searchCondition.destination,
+              label: searchCondition.destination,
+            }
+          }
+          disabled={
+            location.pathname === '/searchResult' ||
+            location.pathname === '/detail'
+          }
         />
 
-        <Button type="submit">SEARCH</Button>
+        <Controller
+          control={control}
+          name="checkIn"
+          render={({ onChange, value }) => (
+            <StyledDatePicker
+              pathname={location.pathname}
+              placeholderText="Check-in"
+              className="open-sans"
+              selected={
+                location.pathname === '/searchResult' ||
+                location.pathname === '/detail'
+                  ? new Date(searchCondition.checkIn)
+                  : value
+              }
+              onChange={onChange}
+              minDate={new Date()}
+              showDisabledMonthNavigation
+              showPopperArrow={false}
+              todayButton="today"
+              dateFormat="yyyy/MM/dd"
+              disabled={
+                location.pathname === '/searchResult' ||
+                location.pathname === '/detail'
+              }
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="checkOut"
+          render={({ onChange, value }) => (
+            <StyledDatePicker
+              pathname={location.pathname}
+              placeholderText="Check-out"
+              className="open-sans"
+              selected={
+                location.pathname === '/searchResult' ||
+                location.pathname === '/detail'
+                  ? new Date(searchCondition.checkOut)
+                  : value
+              }
+              onChange={onChange}
+              minDate={new Date()}
+              showDisabledMonthNavigation
+              showPopperArrow={false}
+              todayButton="today"
+              dateFormat="yyyy/MM/dd"
+              disabled={
+                location.pathname === '/searchResult' ||
+                location.pathname === '/detail'
+              }
+            />
+          )}
+        />
+
+        {location.pathname !== '/searchResult' &&
+          location.pathname !== '/detail' && (
+            <Button type="submit" className="w-100">
+              SEARCH
+            </Button>
+          )}
       </StyledForm>
-
-      <BasicCheckedSelect
-        options={options}
-        placeholder={[
-          <MdLocationOn
-            color={color.black}
-            size={24}
-            key={0}
-            className="me-3"
-          />,
-          'Destination',
-        ]}
-      />
-
-      <Button type="submit" onClick={() => history.push('/searchResult')}>
-        SEARCH
-      </Button>
     </StyledSearchBoxContainer>
   );
 };
@@ -115,38 +149,52 @@ const StyledSearchBoxContainer = styled.div`
       padding: 24px 0;
     `}
 
-  .dropdown {
-    button {
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      width: 232px;
+  .react-datepicker__tab-loop {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
 
-      &::after {
-        margin-left: auto;
-      }
-    }
-    .dropdown-menu {
-      left: 0;
-      right: 0 !important;
-    }
+  .select-container {
+    ${(props) =>
+      (props.pathname === '/searchResult' || props.pathname === '/detail') &&
+      css`
+        cursor: not-allowed;
+      `}
+  }
+
+  .react-datepicker-wrapper {
+    width: 232px;
   }
 `;
 
 const StyledForm = styled(Form)`
   display: flex;
+  gap: 16px;
+  width: 100%;
+
+  ${(props) =>
+    (props.pathname === '/searchResult' || props.pathname === '/detail') &&
+    css`
+      justify-content: center;
+      gap: 56px;
+    `}
 `;
 
-const StyledSelect = styled(Form.Select)`
+const StyledDatePicker = styled(DatePicker)`
   height: 56px;
   width: 232px;
-  border: none;
   border-radius: 4px;
-  padding: 0 16px;
+  /* width: 100%; */
+  border: none;
+  background: url(images/event.svg) no-repeat 18px center ${color.white};
+  padding: 0 0 0 56px;
 
-  option[value=''][disabled] {
-    display: none;
-  }
+  ${(props) =>
+    (props.pathname === '/searchResult' || props.pathname === '/detail') &&
+    css`
+      cursor: not-allowed;
+    `}
 `;
 
 SearchBox.propTypes = {};

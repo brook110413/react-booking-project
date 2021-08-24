@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Row, Col, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import moment from 'moment';
 
 import color from '@/style/color';
 
@@ -12,6 +13,7 @@ const ReserveSuccess = () => {
   const reserveInfo = useSelector((state) => state.global.reserveInfo);
   const chosenHotel = useSelector((state) => state.global.chosenHotel);
   const count = useSelector((state) => state.global.count);
+  const searchCondition = useSelector((state) => state.global.searchCondition);
 
   const reserveSuccessList = [
     {
@@ -34,7 +36,9 @@ const ReserveSuccess = () => {
       area: [
         {
           title: 'Hotel',
-          content: `${chosenHotel.name} / ${count} night`,
+          content: `${chosenHotel.name} / ${moment(
+            searchCondition.checkOut
+          ).diff(searchCondition.checkIn, 'days')} night`,
         },
       ],
     },
@@ -42,11 +46,11 @@ const ReserveSuccess = () => {
       area: [
         {
           title: 'check-in',
-          content: 'Wednesday, 17 June 2021',
+          content: moment(searchCondition.checkIn).format('YYYY / MM / DD'),
         },
         {
           title: 'check-out',
-          content: 'Friday, 19 June 2021',
+          content: moment(searchCondition.checkOut).format('YYYY / MM / DD'),
         },
       ],
     },

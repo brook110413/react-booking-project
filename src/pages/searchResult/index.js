@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
-// import SearchBox from '@Basic/SearchBox';
 import SearchBox from '@Components/SearchBox';
 import color from '@Style/color';
 
@@ -10,6 +10,8 @@ import AsideFilterComponent from './components/AsideFilterComponent';
 import HotelItem from './components/HotelItem';
 
 const SearchResult = () => {
+  const searchCondition = useSelector((state) => state.global.searchCondition);
+
   return (
     <StyledWrapper>
       <StyledSearchBoxWrapper>
@@ -19,7 +21,7 @@ const SearchResult = () => {
       </StyledSearchBoxWrapper>
 
       <Container>
-        <div className="h2 fw-bold py-4 m-0">Bangkok</div>
+        <div className="h2 fw-bold py-4 m-0">{searchCondition.destination}</div>
         <Row>
           <Col lg={4}>
             <AsideFilterComponent />

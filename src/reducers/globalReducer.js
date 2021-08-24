@@ -2,6 +2,7 @@ import {
   SET_CHOSEN_HOTEL,
   SET_COUNT,
   SET_RESERVE_INFO,
+  SET_SEARCH_CONDITION,
 } from '@/actions/globalAction';
 
 const initState = {
@@ -150,6 +151,11 @@ const initState = {
   },
   count: 0,
   reserveInfo: {},
+  searchCondition: {
+    destination: 'Bangkok',
+    checkIn: '2021-11-01T16:00:00.000Z',
+    checkOut: '2021-11-03T16:00:00.000Z',
+  },
 };
 
 const globalReducer = (state = initState, action) => {
@@ -168,6 +174,11 @@ const globalReducer = (state = initState, action) => {
       return {
         ...state,
         reserveInfo: action.payload,
+      };
+    case SET_SEARCH_CONDITION:
+      return {
+        ...state,
+        searchCondition: { ...action.payload },
       };
     default:
       return state;

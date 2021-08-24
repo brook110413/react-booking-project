@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import React from 'react';
 import color from '@/style/color';
 import Select from 'react-select';
-import { BsStarFill } from 'react-icons/bs';
 
 const customStyles = {
   option: (base, state) => ({
@@ -27,9 +25,12 @@ const customStyles = {
     border: 'none',
     borderRadius: '4px',
     boxShadow: state.isFocused && `0 0 0 1.5px ${color.primary}`,
+    backgroundColor: `${color.white}`,
+    color: state.isDisabled && `${color.darkGray}`,
 
     '&:hover': {
       borderColor: `${color.bgShade}`,
+      // cursor: state.isDisabled && 'not-allowed',
     },
   }),
   placeholder: (base) => ({
@@ -37,6 +38,10 @@ const customStyles = {
     color: `${color.darkGray}`,
     display: 'flex',
     alignItems: 'center',
+    background: `url(images/place.svg) no-repeat 2px center ${color.white}`,
+    height: '24px',
+    padding: '0 0 0 40px',
+    margin: 0,
   }),
   indicatorSeparator: (base) => ({
     ...base,
@@ -52,17 +57,19 @@ const customStyles = {
     },
   }),
   singleValue: (base, state) => ({
-    color: state.isDisabled && `${color.secondary}`,
+    color: state.isDisabled && `${color.black}`,
     padding: '0 0 0 40px',
-    background: `url(images/place.svg) no-repeat 0 center ${color.white}`,
+    background: `url(images/place.svg) no-repeat 2px center ${color.white}`,
     height: '24px',
     display: 'flex',
     alignItems: 'center',
+    cursor: state.isDisabled && 'not-allowed',
   }),
   valueContainer: (base, state) => ({
     ...base,
     padding: '0 16px',
     height: '24px',
+    cursor: state.isDisabled && 'not-allowed',
   }),
   indicatorsContainer: (base, state) => ({
     ...base,
