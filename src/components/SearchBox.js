@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Button, Form } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { MdLocationOn } from 'react-icons/md';
 
 import BasicCheckedSelect from '@Components/BasicCheckedSelect';
@@ -12,18 +12,14 @@ const SearchBox = () => {
   const history = useHistory();
   const location = useLocation();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, control } = useForm();
 
   const options = [
     { value: 'Bangkok', label: 'Bangkok' },
     { value: 'Osaka', label: 'Osaka' },
     { value: 'Roma', label: 'Roma' },
     { value: 'Paris', label: 'Paris' },
-    { value: 'Reykjavk', label: 'Reykjavk' },
+    { value: 'Reykjavik', label: 'Reykjavik' },
   ];
 
   const onSubmit = (data) => {
@@ -59,9 +55,26 @@ const SearchBox = () => {
           ))}
         </StyledSelect> */}
 
-        {/* <Button type="submit" onClick={() => history.push('/searchResult')}>
-          SEARCH
-        </Button> */}
+        <Controller
+          name="destination"
+          control={control}
+          as={BasicCheckedSelect}
+          options={options}
+          placeholder={[
+            <MdLocationOn
+              color={color.black}
+              size={24}
+              key={0}
+              className="me-3"
+            />,
+            'Destination',
+          ]}
+          // rules={{
+          //   required: true,
+          // }}
+        />
+
+        <Button type="submit">SEARCH</Button>
       </StyledForm>
 
       <BasicCheckedSelect

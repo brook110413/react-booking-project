@@ -46,7 +46,7 @@ const TopChoiceComponent = (props) => {
   ];
 
   return (
-    <div>
+    <StyledWrapper>
       <div className="title">Top Choices</div>
 
       <Swiper
@@ -86,9 +86,15 @@ const TopChoiceComponent = (props) => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </StyledWrapper>
   );
 };
+
+const StyledWrapper = styled.div`
+  .swiper-container {
+    z-index: -1;
+  }
+`;
 
 const StyledTopChoicesContainer = styled.div`
   img {

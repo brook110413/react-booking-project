@@ -8,10 +8,11 @@ const customStyles = {
   option: (base, state) => ({
     background:
       state.isSelected &&
-      `url(images/icons/icon-check.svg) no-repeat 8px center ${color.white}`,
+      `url(images/done.svg) no-repeat 16px center ${color.white}`,
     color: state.isSelected && `${color.black}`,
-    padding: '4px 0 4px 40px',
+    padding: '16px 0 16px 56px',
     display: state.isDisabled ? 'none' : 'flex',
+    zIndex: 10,
 
     '&:hover': {
       backgroundColor: state.isSelected ? `${color.white}` : `${color.primary}`,
@@ -23,10 +24,6 @@ const customStyles = {
     ...base,
     height: '56px',
     width: '232px',
-    // backgroundColor: state.isDisabled && `${color.white}`,
-    // backgroundColor: `${color.white}`,
-    // background: `url(images/icons/icon-check.svg) no-repeat 8px center ${color.white}`,
-    // borderColor: state.isDisabled ? `${color.white}` : `${color.bgShade}`,
     border: 'none',
     borderRadius: '4px',
     boxShadow: state.isFocused && `0 0 0 1.5px ${color.primary}`,
@@ -38,7 +35,6 @@ const customStyles = {
   placeholder: (base) => ({
     ...base,
     color: `${color.darkGray}`,
-    background: `url(${(<BsStarFill />)}) no-repeat 8px center ${color.white}`,
     display: 'flex',
     alignItems: 'center',
   }),
@@ -57,10 +53,14 @@ const customStyles = {
   }),
   singleValue: (base, state) => ({
     color: state.isDisabled && `${color.secondary}`,
+    padding: '0 0 0 40px',
+    background: `url(images/place.svg) no-repeat 0 center ${color.white}`,
+    height: '24px',
+    display: 'flex',
+    alignItems: 'center',
   }),
   valueContainer: (base, state) => ({
     ...base,
-    // padding: state.isDisabled ? '0' : '0 10px',
     padding: '0 16px',
     height: '24px',
   }),
@@ -68,10 +68,6 @@ const customStyles = {
     ...base,
     height: '56px',
     padding: '0 8px 0 0',
-  }),
-  menuList: (base, state) => ({
-    ...base,
-    maxHeight: '200px',
   }),
 };
 
