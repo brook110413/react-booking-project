@@ -155,6 +155,10 @@ const StyledSearchBoxContainer = styled.div`
     bottom: 0;
   }
 
+  /* .react-datepicker__input-container input {
+    border: 1px solid red;
+  } */
+
   .select-container {
     ${(props) =>
       (props.pathname === '/searchResult' || props.pathname === '/detail') &&
@@ -185,7 +189,6 @@ const StyledDatePicker = styled(DatePicker)`
   height: 56px;
   width: 232px;
   border-radius: 4px;
-  /* width: 100%; */
   border: none;
   background: url(images/event.svg) no-repeat 18px center ${color.white};
   padding: 0 0 0 56px;

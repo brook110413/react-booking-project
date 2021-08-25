@@ -24,7 +24,7 @@ const customStyles = {
     width: '232px',
     border: 'none',
     borderRadius: '4px',
-    boxShadow: state.isFocused && `0 0 0 1.5px ${color.primary}`,
+    boxShadow: state.isFocused && `0 0 0 2px ${color.black}`,
     backgroundColor: `${color.white}`,
     color: state.isDisabled && `${color.darkGray}`,
 
