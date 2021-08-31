@@ -26,9 +26,11 @@ const PopOutComponent = () => {
           <div
             className="open-sans mb-2"
             style={{ fontSize: 12 }}
-          >{`${count} room ． ${moment(searchCondition.checkOut).diff(
-            searchCondition.checkIn,
-            'days'
+          >{`${count} room ． ${Math.abs(
+            moment(searchCondition.checkOut).diff(
+              searchCondition.checkIn,
+              'days'
+            )
           )} night`}</div>
           <div style={{ fontSize: 24, fontWeight: 'bold' }}>
             TWD {(count * chosenHotel.cost).toLocaleString()}

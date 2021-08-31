@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import color from '@Style/color';
 
-const BookingDetail = (props) => {
+const BookingDetail = () => {
   const count = useSelector((state) => state.global.count);
   const chosenHotel = useSelector((state) => state.global.chosenHotel);
   const searchCondition = useSelector((state) => state.global.searchCondition);
@@ -22,9 +22,11 @@ const BookingDetail = (props) => {
             'YYYY/MM/DD'
           )} - ${moment(searchCondition.checkOut).format(
             'YYYY/MM/DD'
-          )}・${moment(searchCondition.checkOut).diff(
-            searchCondition.checkIn,
-            'days'
+          )}・${Math.abs(
+            moment(searchCondition.checkOut).diff(
+              searchCondition.checkIn,
+              'days'
+            )
           )} nights`}</div>
           <div>{`2 adults・${count} room`}</div>
           <div>{chosenHotel.name}</div>

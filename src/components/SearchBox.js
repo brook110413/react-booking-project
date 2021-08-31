@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Button, Form } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -19,7 +19,9 @@ const SearchBox = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, getValues } = useForm({
+    mode: 'onChange',
+  });
 
   const searchCondition = useSelector((state) => state.global.searchCondition);
 
@@ -38,6 +40,12 @@ const SearchBox = () => {
     }
     history.push('/searchResult');
   };
+
+  useEffect(() => {
+    if (getValues('checkIn')) {
+      console.log(getValues('checkIn'), 'getValue');
+    }
+  }, [getValues('checkIn')]);
 
   return (
     <StyledSearchBoxContainer pathname={location.pathname}>
@@ -67,6 +75,7 @@ const SearchBox = () => {
         <Controller
           control={control}
           name="checkIn"
+          defaultValue=""
           render={({ onChange, value }) => (
             <StyledDatePicker
               pathname={location.pathname}
@@ -95,6 +104,7 @@ const SearchBox = () => {
         <Controller
           control={control}
           name="checkOut"
+          defaultValue=""
           render={({ onChange, value }) => (
             <StyledDatePicker
               pathname={location.pathname}
@@ -184,8 +194,6 @@ const StyledForm = styled(Form)`
     display: block;
   } */
 `;
-
-const StyledInputContainer = styled.div``;
 
 const StyledDatePicker = styled(DatePicker)`
   height: 56px;
