@@ -1,11 +1,10 @@
 import React from 'react';
-import { Navbar, Nav, Image, NavDropdown, Container } from 'react-bootstrap';
+import { Navbar, Nav, Image, Container } from 'react-bootstrap';
 import styled from 'styled-components';
-import { AiOutlineGlobal } from 'react-icons/ai';
 
 import color from '@Style/color';
 
-const Header = (props) => {
+const Header = () => {
   return (
     <StyledWrapper>
       <Container>
@@ -16,19 +15,17 @@ const Header = (props) => {
           </Navbar.Brand>
           <Navbar.Collapse id="navbarScroll">
             <StyledNav>
-              <NavDropdown
+              {/* <NavDropdown
                 title={<AiOutlineGlobal size={20} />}
                 id="navbarScrollingDropdown"
               >
-                <NavDropdown.Item>Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Another action
-                </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="#action1">Sign up</Nav.Link>
+                <NavDropdown.Item>CN</NavDropdown.Item>
+                <NavDropdown.Item>EN</NavDropdown.Item>
+              </NavDropdown> */}
+              <Nav.Link>Sign up</Nav.Link>
             </StyledNav>
           </Navbar.Collapse>
-          <StyledLoginLink href="#action2">Login</StyledLoginLink>
+          <StyledLoginLink>Login</StyledLoginLink>
         </StyledNavbar>
       </Container>
     </StyledWrapper>

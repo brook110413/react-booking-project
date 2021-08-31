@@ -10,6 +10,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import BasicCheckedSelect from '@Components/BasicCheckedSelect';
 import color from '@Style/color';
+import { device } from '@Style/browser';
 
 import { setSearchCondition } from '@Actions/globalAction';
 
@@ -122,9 +123,7 @@ const SearchBox = () => {
 
         {location.pathname !== '/searchResult' &&
           location.pathname !== '/detail' && (
-            <Button type="submit" className="w-100">
-              SEARCH
-            </Button>
+            <StyledButton type="submit">SEARCH</StyledButton>
           )}
       </StyledForm>
     </StyledSearchBoxContainer>
@@ -155,10 +154,6 @@ const StyledSearchBoxContainer = styled.div`
     bottom: 0;
   }
 
-  /* .react-datepicker__input-container input {
-    border: 1px solid red;
-  } */
-
   .select-container {
     ${(props) =>
       (props.pathname === '/searchResult' || props.pathname === '/detail') &&
@@ -169,6 +164,10 @@ const StyledSearchBoxContainer = styled.div`
 
   .react-datepicker-wrapper {
     width: 232px;
+
+    /* ${device.tablet} {
+      width: 100%;
+    } */
   }
 `;
 
@@ -182,8 +181,12 @@ const StyledForm = styled(Form)`
     css`
       justify-content: center;
       gap: 56px;
-    `}
+    `}/* ${device.tablet} {
+    display: block;
+  } */
 `;
+
+const StyledInputContainer = styled.div``;
 
 const StyledDatePicker = styled(DatePicker)`
   height: 56px;
@@ -198,6 +201,10 @@ const StyledDatePicker = styled(DatePicker)`
     css`
       cursor: not-allowed;
     `}
+`;
+
+const StyledButton = styled(Button)`
+  width: 128px;
 `;
 
 SearchBox.propTypes = {};
