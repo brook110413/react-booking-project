@@ -3,6 +3,7 @@ import {
   SET_COUNT,
   SET_RESERVE_INFO,
   SET_SEARCH_CONDITION,
+  SET_FILTER_CONDITION,
 } from '@/actions/globalAction';
 
 const initState = {
@@ -156,6 +157,12 @@ const initState = {
     checkIn: '2021-11-01T16:00:00.000Z',
     checkOut: '2021-11-03T16:00:00.000Z',
   },
+  filterCondition: {
+    'Deluxe Double Room': true,
+    'Deluxe Twin Room': true,
+    'Standard Double Room': true,
+    'Twin Room': true,
+  },
 };
 
 const globalReducer = (state = initState, action) => {
@@ -179,6 +186,11 @@ const globalReducer = (state = initState, action) => {
       return {
         ...state,
         searchCondition: { ...action.payload },
+      };
+    case SET_FILTER_CONDITION:
+      return {
+        ...state,
+        filterCondition: action.payload,
       };
     default:
       return state;

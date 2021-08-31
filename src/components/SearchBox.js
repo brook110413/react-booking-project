@@ -33,7 +33,6 @@ const SearchBox = () => {
 
   const onSubmit = (data) => {
     data.destination = data.destination?.value;
-    console.log(data);
     if (data.destination && data.checkIn && data.checkOut) {
       dispatch(setSearchCondition(data));
     }

@@ -1,10 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Form } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 import color from '@Style/color';
 
+import { setFilterCondition } from '@Actions/globalAction';
+
 const AsideFilterComponent = (props) => {
+  const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
+
   const filterList = [
     {
       title: 'Room Type',
@@ -15,15 +22,19 @@ const AsideFilterComponent = (props) => {
         'Deluxe Twin Room',
       ],
     },
-    {
-      title: 'Popular filter',
-      selectList: ['Breakfast included', 'Free Wi-Fi', 'Swimming pool'],
-    },
-    {
-      title: 'Stay type',
-      selectList: ['Hotel', 'Apartment', 'Hostel'],
-    },
+    // {
+    //   title: 'Popular filter',
+    //   selectList: ['Breakfast included', 'Free Wi-Fi', 'Swimming pool'],
+    // },
+    // {
+    //   title: 'Stay type',
+    //   selectList: ['Hotel', 'Apartment', 'Hostel'],
+    // },
   ];
+
+  const onSubmit = (data) => {
+    dispatch(setFilterCondition(data));
+  };
 
   return (
     <StyledWrapper>
@@ -31,11 +42,23 @@ const AsideFilterComponent = (props) => {
         <div className="asideItemBox" key={item.title}>
           <div className="asideItemTitle">{item.title}</div>
           <div className="asideItemContent">
-            {item.selectList.map((select) => (
-              <Form.Group key={select}>
-                <Form.Check type="checkbox" label={select} id={select} />
-              </Form.Group>
-            ))}
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              {item.selectList.map((select) => (
+                <Form.Group key={select}>
+                  <Form.Check
+                    type="checkbox"
+                    label={select}
+                    id={select}
+                    name={select}
+                    ref={register}
+                    defaultChecked
+                  />
+                </Form.Group>
+              ))}
+              <Button type="submit" className="mt-3 w-100">
+                Filter
+              </Button>
+            </Form>
           </div>
         </div>
       ))}
