@@ -21,12 +21,23 @@ const SearchResult = () => {
       </StyledSearchBoxWrapper>
 
       <Container>
-        <div className="h2 fw-bold py-4 m-0">{searchCondition.destination}</div>
+        {/* <div className="h2 fw-bold py-4 m-0">{searchCondition.destination}</div> */}
         <Row>
           <Col lg={4}>
-            <AsideFilterComponent />
+            <StyledStickyAside>
+              <div className="h2 fw-bold py-4 m-0">
+                {searchCondition.destination}
+              </div>
+              <AsideFilterComponent />
+            </StyledStickyAside>
           </Col>
           <Col lg={8}>
+            <div
+              className="h2 fw-bold py-4 m-0 "
+              style={{ visibility: 'hidden' }}
+            >
+              {searchCondition.destination}
+            </div>
             <HotelItem />
           </Col>
         </Row>
@@ -79,6 +90,11 @@ const StyledSearchBoxWrapper = styled.div`
   position: sticky;
   top: 85px;
   z-index: 10;
+`;
+
+const StyledStickyAside = styled.div`
+  position: sticky;
+  top: 190px;
 `;
 
 SearchResult.propTypes = {};
