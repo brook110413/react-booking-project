@@ -4,6 +4,7 @@ import {
   SET_RESERVE_INFO,
   SET_SEARCH_CONDITION,
   SET_FILTER_CONDITION,
+  SET_INIT_STATE,
 } from '@/actions/globalAction';
 
 const initState = {
@@ -191,6 +192,10 @@ const globalReducer = (state = initState, action) => {
       return {
         ...state,
         filterCondition: action.payload,
+      };
+    case SET_INIT_STATE:
+      return {
+        ...initState,
       };
     default:
       return state;

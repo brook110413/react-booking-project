@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Container } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 
 import color from '@Style/color';
 // import SearchBox from '@Basic/SearchBox';
@@ -10,7 +11,15 @@ import TopChoiceComponent from './components/TopChoiceComponent';
 import PopularDestinationComponent from './components/PopularDestinationComponent';
 import GetInspirationComponent from './components/GetInspirationComponent';
 
+import { setInitState } from '@Actions/globalAction';
+
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setInitState());
+  }, []);
+
   return (
     <StyledWrapper>
       <div className="banner">Discover your ideal hotel</div>
