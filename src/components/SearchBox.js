@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Button, Form } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -19,11 +19,15 @@ const SearchBox = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const { handleSubmit, control, getValues } = useForm({
+  const { handleSubmit, control, getValues, formState } = useForm({
     mode: 'onChange',
   });
 
+  const { isValid } = formState;
+
   const searchCondition = useSelector((state) => state.global.searchCondition);
+
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const options = [
     { value: 'Bangkok', label: 'Bangkok' },
@@ -44,11 +48,15 @@ const SearchBox = () => {
   useEffect(() => {
     if (getValues('checkIn')) {
       console.log(getValues('checkIn'), 'getValue');
+      setIsDisabled(false);
     }
   }, [getValues('checkIn')]);
 
   return (
-    <StyledSearchBoxContainer pathname={location.pathname}>
+    <StyledSearchBoxContainer
+      pathname={location.pathname}
+      isDisabled={isDisabled}
+    >
       <StyledForm
         onSubmit={handleSubmit(onSubmit)}
         pathname={location.pathname}
@@ -117,7 +125,7 @@ const SearchBox = () => {
                   : value
               }
               onChange={onChange}
-              minDate={new Date()}
+              minDate={isDisabled ? new Date() : new Date(getValues('checkIn'))}
               showDisabledMonthNavigation
               showPopperArrow={false}
               todayButton="today"
@@ -204,7 +212,9 @@ const StyledDatePicker = styled(DatePicker)`
   padding: 0 0 0 56px;
 
   ${(props) =>
-    (props.pathname === '/searchResult' || props.pathname === '/detail') &&
+    (props.pathname === '/searchResult' ||
+      props.pathname === '/detail' ||
+      props.isDisabled === true) &&
     css`
       cursor: not-allowed;
     `}
