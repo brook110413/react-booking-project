@@ -4,6 +4,8 @@ import '@Style/variables.scss';
 
 // Import Swiper styles
 import 'swiper/swiper-bundle.css';
+// react-toastify styles
+import 'react-toastify/dist/ReactToastify.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

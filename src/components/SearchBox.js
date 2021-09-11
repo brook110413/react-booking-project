@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Button, Form } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
 import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
+import { toast } from 'react-toastify';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -12,22 +14,29 @@ import BasicCheckedSelect from '@Components/BasicCheckedSelect';
 import color from '@Style/color';
 import { device } from '@Style/browser';
 
-import { setSearchCondition } from '@Actions/globalAction';
+import {
+  setSearchCondition,
+  setIsCheckOutValidate,
+} from '@Actions/globalAction';
 
 const SearchBox = () => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const { handleSubmit, control, getValues, formState } = useForm({
+  const { handleSubmit, control, getValues, formState, errors } = useForm({
     mode: 'onChange',
   });
 
   const { isValid } = formState;
 
   const searchCondition = useSelector((state) => state.global.searchCondition);
+  const isCheckOutValidate = useSelector(
+    (state) => state.global.isCheckOutValidate
+  );
 
-  const [isDisabled, setIsDisabled] = useState(true);
+  const checkInDate = moment(searchCondition.checkIn).valueOf();
+  const checkOutData = moment(searchCondition.checkOut).valueOf();
 
   const options = [
     { value: 'Bangkok', label: 'Bangkok' },
@@ -37,26 +46,31 @@ const SearchBox = () => {
     { value: 'Reykjavik', label: 'Reykjavik' },
   ];
 
+  const notify = () => toast.error('check out time is not validated');
+
   const onSubmit = (data) => {
     data.destination = data.destination?.value;
     if (data.destination && data.checkIn && data.checkOut) {
       dispatch(setSearchCondition(data));
     }
-    history.push('/searchResult');
+
+    if (checkOutData > checkInDate) {
+      history.push('/searchResult');
+    }
   };
 
   useEffect(() => {
-    if (getValues('checkIn')) {
-      console.log(getValues('checkIn'), 'getValue');
-      setIsDisabled(false);
+    if (errors?.checkOut?.type === 'validate') {
+      dispatch(setIsCheckOutValidate(false));
     }
-  }, [getValues('checkIn')]);
+
+    if (!isCheckOutValidate) {
+      notify();
+    }
+  }, [errors, isCheckOutValidate]);
 
   return (
-    <StyledSearchBoxContainer
-      pathname={location.pathname}
-      isDisabled={isDisabled}
-    >
+    <StyledSearchBoxContainer pathname={location.pathname}>
       <StyledForm
         onSubmit={handleSubmit(onSubmit)}
         pathname={location.pathname}
@@ -64,15 +78,20 @@ const SearchBox = () => {
         <Controller
           name="destination"
           control={control}
+          rules={{
+            required: true,
+          }}
           as={BasicCheckedSelect}
           options={options}
           placeholder="Destination"
           defaultValue={
-            (location.pathname === '/searchResult' ||
-              location.pathname === '/detail') && {
-              value: searchCondition.destination,
-              label: searchCondition.destination,
-            }
+            location.pathname === '/searchResult' ||
+            location.pathname === '/detail'
+              ? {
+                  value: searchCondition.destination,
+                  label: searchCondition.destination,
+                }
+              : ''
           }
           disabled={
             location.pathname === '/searchResult' ||
@@ -84,6 +103,9 @@ const SearchBox = () => {
           control={control}
           name="checkIn"
           defaultValue=""
+          rules={{
+            required: true,
+          }}
           render={({ onChange, value }) => (
             <StyledDatePicker
               pathname={location.pathname}
@@ -97,7 +119,6 @@ const SearchBox = () => {
               }
               onChange={onChange}
               minDate={new Date()}
-              showDisabledMonthNavigation
               showPopperArrow={false}
               todayButton="today"
               dateFormat="yyyy/MM/dd"
@@ -113,6 +134,12 @@ const SearchBox = () => {
           control={control}
           name="checkOut"
           defaultValue=""
+          rules={{
+            required: true,
+            validate: (value) =>
+              moment(value).valueOf() >
+                moment(getValues('checkIn')).valueOf() || '123',
+          }}
           render={({ onChange, value }) => (
             <StyledDatePicker
               pathname={location.pathname}
@@ -125,8 +152,7 @@ const SearchBox = () => {
                   : value
               }
               onChange={onChange}
-              minDate={isDisabled ? new Date() : new Date(getValues('checkIn'))}
-              showDisabledMonthNavigation
+              minDate={new Date()}
               showPopperArrow={false}
               todayButton="today"
               dateFormat="yyyy/MM/dd"
@@ -140,7 +166,12 @@ const SearchBox = () => {
 
         {location.pathname !== '/searchResult' &&
           location.pathname !== '/detail' && (
-            <StyledButton type="submit">SEARCH</StyledButton>
+            <StyledButton
+              type="submit"
+              disabled={getValues('destination') === ''}
+            >
+              SEARCH
+            </StyledButton>
           )}
       </StyledForm>
     </StyledSearchBoxContainer>
@@ -181,10 +212,6 @@ const StyledSearchBoxContainer = styled.div`
 
   .react-datepicker-wrapper {
     width: 232px;
-
-    /* ${device.tablet} {
-      width: 100%;
-    } */
   }
 `;
 
@@ -198,9 +225,7 @@ const StyledForm = styled(Form)`
     css`
       justify-content: center;
       gap: 56px;
-    `}/* ${device.tablet} {
-    display: block;
-  } */
+    `}
 `;
 
 const StyledDatePicker = styled(DatePicker)`
@@ -212,9 +237,7 @@ const StyledDatePicker = styled(DatePicker)`
   padding: 0 0 0 56px;
 
   ${(props) =>
-    (props.pathname === '/searchResult' ||
-      props.pathname === '/detail' ||
-      props.isDisabled === true) &&
+    (props.pathname === '/searchResult' || props.pathname === '/detail') &&
     css`
       cursor: not-allowed;
     `}

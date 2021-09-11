@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Container } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 import color from '@Style/color';
-// import SearchBox from '@Basic/SearchBox';
 import SearchBox from '@Components/SearchBox';
 
 import TopChoiceComponent from './components/TopChoiceComponent';
@@ -15,6 +15,10 @@ import { setInitState } from '@Actions/globalAction';
 
 const Home = () => {
   const dispatch = useDispatch();
+
+  const isCheckOutValidate = useSelector(
+    (state) => state.global.isCheckOutValidate
+  );
 
   useEffect(() => {
     dispatch(setInitState());
@@ -33,6 +37,20 @@ const Home = () => {
 
         <GetInspirationComponent />
       </StyledContainer>
+
+      {!isCheckOutValidate && (
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover={false}
+        />
+      )}
     </StyledWrapper>
   );
 };

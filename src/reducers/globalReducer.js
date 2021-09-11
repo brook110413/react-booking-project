@@ -5,6 +5,7 @@ import {
   SET_SEARCH_CONDITION,
   SET_FILTER_CONDITION,
   SET_INIT_STATE,
+  SET_IS_CHECK_OUT_VALIDATE,
 } from '@/actions/globalAction';
 
 const initState = {
@@ -164,6 +165,7 @@ const initState = {
     'Standard Double Room': true,
     'Twin Room': true,
   },
+  isCheckOutValidate: true,
 };
 
 const globalReducer = (state = initState, action) => {
@@ -192,6 +194,11 @@ const globalReducer = (state = initState, action) => {
       return {
         ...state,
         filterCondition: action.payload,
+      };
+    case SET_IS_CHECK_OUT_VALIDATE:
+      return {
+        ...state,
+        isCheckOutValidate: action.payload,
       };
     case SET_INIT_STATE:
       return {
