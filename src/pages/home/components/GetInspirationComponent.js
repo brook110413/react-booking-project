@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Image } from 'react-bootstrap';
 
+import { device } from '@Style/browser';
+
 const GetInspirationComponent = (props) => {
   const inspirationList = [
     {
@@ -59,6 +61,10 @@ const StyledInspirationContainer = styled.div`
       width: 100%;
       border-radius: 8px;
       margin-bottom: 24px;
+
+      ${device.tablet} {
+        height: 158px;
+      }
     }
 
     .itemTitle {

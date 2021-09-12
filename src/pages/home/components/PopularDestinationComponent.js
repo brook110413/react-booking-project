@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import color from '@Style/color';
+import { device } from '@Style/browser';
 
 const PopularDestinationComponent = (props) => {
   const popularDestinations = [
@@ -65,6 +66,18 @@ const StyledDestinationContainer = styled.div`
   flex-wrap: wrap;
   gap: 24px 25.8px;
 
+  ${device.wideDesktop} {
+    gap: 24px 21.6px;
+  }
+
+  ${device.desktop} {
+    gap: 24px 16.1px;
+  }
+
+  ${device.tablet} {
+    gap: 24px 20px;
+  }
+
   .item {
     width: 31.79%;
     height: 78px;
@@ -78,14 +91,26 @@ const StyledDestinationContainer = styled.div`
     justify-content: center;
     gap: 8px;
 
+    ${device.tablet} {
+      width: 48%;
+    }
+
     .nation {
       color: #ffffff98;
       font-size: 16px;
       font-weight: bold;
+
+      ${device.tablet} {
+        font-size: 14px;
+      }
     }
     .city {
       color: ${color.white};
       font-size: 28px;
+
+      ${device.tablet} {
+        font-size: 24px;
+      }
     }
   }
 `;
