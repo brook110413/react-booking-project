@@ -12,7 +12,6 @@ const ReserveSuccess = () => {
 
   const reserveInfo = useSelector((state) => state.global.reserveInfo);
   const chosenHotel = useSelector((state) => state.global.chosenHotel);
-  const count = useSelector((state) => state.global.count);
   const searchCondition = useSelector((state) => state.global.searchCondition);
 
   const reserveSuccessList = [
