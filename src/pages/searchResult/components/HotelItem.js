@@ -109,6 +109,11 @@ const StyledLink = styled(Link)`
 
   &:hover {
     box-shadow: 5px 5px 5px ${color.secondary};
+
+    img {
+      transform: scale(1.04);
+      transition: all 0.3s ease-in-out;
+    }
   }
 `;
 
