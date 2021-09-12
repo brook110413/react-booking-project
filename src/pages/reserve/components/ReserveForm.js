@@ -27,7 +27,6 @@ const ReserveForm = ({ setPage }) => {
           <Form.Control
             name="name"
             ref={register({ required: 'this is required' })}
-            // {...register('name', { required: 'this is required' })}
             type="text"
             placeholder="Enter your name"
           />
@@ -39,7 +38,6 @@ const ReserveForm = ({ setPage }) => {
           <Form.Control
             name="email"
             ref={register({ required: 'this is required' })}
-            // {...register('email', { required: 'this is required' })}
             type="email"
             placeholder="Enter your email"
           />
@@ -52,19 +50,10 @@ const ReserveForm = ({ setPage }) => {
             name="phone"
             ref={register({
               required: 'this is required',
-              minLength: {
-                value: 10,
-                message: 'your phone number needs 10 numbers',
-              },
+              validate: (value) =>
+                value.length === 10 || 'your phone number needs 10 numbers',
             })}
-            // {...register('phone', {
-            //   required: 'this is required',
-            //   minLength: {
-            //     value: 10,
-            //     message: 'your phone number needs 10 numbers',
-            //   },
-            // })}
-            type="tel"
+            type="number"
             placeholder="Enter your phone"
             maxLength="10"
           />
