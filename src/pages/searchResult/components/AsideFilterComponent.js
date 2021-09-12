@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -8,8 +8,9 @@ import color from '@Style/color';
 
 import { setFilterCondition } from '@Actions/globalAction';
 
-const AsideFilterComponent = (props) => {
+const AsideFilterComponent = () => {
   const { register, handleSubmit } = useForm();
+
   const dispatch = useDispatch();
 
   const filterList = [
@@ -32,6 +33,16 @@ const AsideFilterComponent = (props) => {
     // },
   ];
 
+  const [filterArray, setFilterArray] = useState([...filterList[0].selectList]);
+
+  const hasChecked = (select) => {
+    if (filterArray.includes(select)) {
+      setFilterArray([...filterArray].filter((a) => a !== select));
+    } else {
+      setFilterArray([...filterArray, select]);
+    }
+  };
+
   const onSubmit = (data) => {
     dispatch(setFilterCondition(data));
   };
@@ -51,11 +62,19 @@ const AsideFilterComponent = (props) => {
                     id={select}
                     name={select}
                     ref={register}
-                    defaultChecked
+                    // defaultChecked
+                    checked={filterArray.includes(select)}
+                    onChange={() => {
+                      hasChecked(select);
+                    }}
                   />
                 </Form.Group>
               ))}
-              <Button type="submit" className="mt-3 w-100">
+              <Button
+                type="submit"
+                className="mt-3 w-100"
+                disabled={filterArray.length <= 0}
+              >
                 Filter
               </Button>
             </Form>
@@ -71,8 +90,10 @@ const StyledWrapper = styled.div`
   background-color: ${color.secondary};
   border-radius: 8px;
   position: sticky;
-  /* top: 190px; */
-  /* top: 190px; */
+
+  button:disabled {
+    cursor: not-allowed;
+  }
 
   .asideItemBox {
     padding: 24px 0;

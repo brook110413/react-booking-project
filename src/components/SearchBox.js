@@ -137,8 +137,7 @@ const SearchBox = () => {
           rules={{
             required: true,
             validate: (value) =>
-              moment(value).valueOf() >
-                moment(getValues('checkIn')).valueOf() || '123',
+              moment(value).valueOf() > moment(getValues('checkIn')).valueOf(),
           }}
           render={({ onChange, value }) => (
             <StyledDatePicker
