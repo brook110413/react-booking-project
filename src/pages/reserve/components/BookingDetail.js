@@ -28,7 +28,7 @@ const BookingDetail = () => {
               'days'
             )
           )} nights`}</div>
-          <div>{`2 adults・${count} room`}</div>
+          <div>{`2 adults・${count !== 0 ? count : 1} room`}</div>
           <div>{chosenHotel.name}</div>
         </div>
       </div>
@@ -40,12 +40,19 @@ const BookingDetail = () => {
             <span>{chosenHotel.roomType}</span>
             <span>
               {`TWD ${(
-                chosenHotel.cost * (count !== 0 ? count : 1)
+                chosenHotel.cost *
+                (count !== 0 ? count : 1) *
+                Math.abs(
+                  moment(searchCondition.checkOut).diff(
+                    searchCondition.checkIn,
+                    'days'
+                  )
+                )
               ).toLocaleString()}`}
             </span>
           </div>
           <div className="d-flex justify-content-between">
-            <span>{`VAT (7%)`}</span>
+            <span>{`VAT`}</span>
             <span>{`TWD ${vat}`}</span>
           </div>
           <div className="d-flex justify-content-between">
@@ -61,7 +68,14 @@ const BookingDetail = () => {
       >
         <span>Total</span>
         <span>{`TWD ${(
-          chosenHotel.cost * (count !== 0 ? count : 2) +
+          chosenHotel.cost *
+            (count !== 0 ? count : 1) *
+            Math.abs(
+              moment(searchCondition.checkOut).diff(
+                searchCondition.checkIn,
+                'days'
+              )
+            ) +
           vat +
           serviceCharge
         ).toLocaleString()}`}</span>
