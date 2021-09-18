@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SwiperCore, { Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from 'styled-components';
 import { Image } from 'react-bootstrap';
+import { useMediaQuery } from 'react-responsive';
 
 import color from '@Style/color';
 
@@ -45,13 +46,22 @@ const TopChoiceComponent = (props) => {
     },
   ];
 
+  const isTablet = useMediaQuery({
+    query: '(max-width: 768px)',
+  });
+
+  useEffect(() => {
+    console.log(isTablet);
+  }, [isTablet]);
+
   return (
     <StyledWrapper>
       <div className="title">Top Choices</div>
 
       <Swiper
         spaceBetween={30}
-        slidesPerView={4}
+        slidesPerView={isTablet ? 2.6 : 4}
+        // slidesPerView={4}
         loop={true}
         autoplay={{
           delay: 2000,

@@ -100,7 +100,7 @@ const StyledDestinationContainer = styled.div`
       font-size: 16px;
       font-weight: bold;
 
-      ${device.tablet} {
+      ${device.desktop} {
         font-size: 14px;
       }
     }
@@ -108,7 +108,7 @@ const StyledDestinationContainer = styled.div`
       color: ${color.white};
       font-size: 28px;
 
-      ${device.tablet} {
+      ${device.desktop} {
         font-size: 24px;
       }
     }

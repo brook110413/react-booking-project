@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
+import { useMediaQuery } from 'react-responsive';
 
 import color from '@Style/color';
 import SearchBox from '@Components/SearchBox';
@@ -15,6 +16,9 @@ import { setInitState } from '@Actions/globalAction';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const isTablet = useMediaQuery({
+    query: '(max-width: 768px)',
+  });
 
   const isCheckOutValidate = useSelector(
     (state) => state.global.isCheckOutValidate
@@ -26,7 +30,9 @@ const Home = () => {
 
   return (
     <StyledWrapper>
-      <div className="banner">Discover your ideal hotel</div>
+      <div className="banner">
+        Discover your {isTablet && <br />} ideal hotel
+      </div>
 
       <SearchBox />
 
@@ -69,6 +75,8 @@ const StyledWrapper = styled.div`
     color: ${color.white};
     font-size: 48px;
     font-weight: bold;
+    text-align: center;
+    line-height: 1.2;
   }
 
   .title {

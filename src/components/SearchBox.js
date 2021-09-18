@@ -167,7 +167,11 @@ const SearchBox = () => {
           location.pathname !== '/detail' && (
             <StyledButton
               type="submit"
-              disabled={getValues('destination') === ''}
+              disabled={
+                getValues('destination') === '' ||
+                getValues('checkIn') === '' ||
+                getValues('checkOut') === ''
+              }
             >
               SEARCH
             </StyledButton>
