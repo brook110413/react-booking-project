@@ -85,8 +85,10 @@ const BasicCheckedSelect = React.forwardRef((props, ref) => {
         {...props}
         innerRef={ref}
         ref={ref}
-        className="react-select"
-        classNamePrefix={props.className}
+        // className="react-select"
+        // classNamePrefix={props.className}
+        className="react-select-container"
+        classNamePrefix="react-select"
         isSearchable={props.isSearchable || false}
         isDisabled={props.disabled || false}
         styles={customStyles}

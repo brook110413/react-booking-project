@@ -199,6 +199,14 @@ const StyledSearchBoxContainer = styled.div`
       padding: 24px 0;
     `}
 
+  ${device.desktop} {
+    max-width: 700px;
+  }
+
+  ${device.tablet} {
+    max-width: 570px;
+  }
+
   .react-datepicker__tab-loop {
     position: absolute;
     left: 0;
@@ -211,10 +219,20 @@ const StyledSearchBoxContainer = styled.div`
       css`
         cursor: not-allowed;
       `}
+
+    .react-select__control {
+      ${device.desktop} {
+        width: 100%;
+      }
+    }
   }
 
   .react-datepicker-wrapper {
     width: 232px;
+
+    ${device.desktop} {
+      width: 100%;
+    }
   }
 `;
 
@@ -229,6 +247,19 @@ const StyledForm = styled(Form)`
       justify-content: center;
       gap: 56px;
     `}
+
+  ${device.desktop} {
+    flex-direction: column;
+
+    ${(props) =>
+      (props.pathname === '/searchResult' || props.pathname === '/detail') &&
+      css`
+        /* justify-content: center; */
+        flex-direction: row;
+        gap: 28px;
+        /* gap: 0; */
+      `}
+  }
 `;
 
 const StyledDatePicker = styled(DatePicker)`
@@ -244,10 +275,18 @@ const StyledDatePicker = styled(DatePicker)`
     css`
       cursor: not-allowed;
     `}
+
+  ${device.desktop} {
+    width: 100%;
+  }
 `;
 
 const StyledButton = styled(Button)`
   width: 128px;
+
+  ${device.desktop} {
+    width: 100%;
+  }
 `;
 
 SearchBox.propTypes = {};

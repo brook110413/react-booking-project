@@ -15,10 +15,10 @@ const Reserve = () => {
         <Row className="justify-content-center">
           {page === 0 ? (
             <>
-              <Col lg={4}>
+              <Col lg={4} md={6}>
                 <ReserveForm setPage={setPage} />
               </Col>
-              <Col lg={4}>
+              <Col lg={4} md={6}>
                 <BookingDetail />
               </Col>
             </>

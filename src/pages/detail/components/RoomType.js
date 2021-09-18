@@ -13,13 +13,19 @@ import {
   MdLocalBar,
   MdPerson,
 } from 'react-icons/md';
+import { useMediaQuery } from 'react-responsive';
 
 import color from '@Style/color';
+import { device } from '@/style/browser';
 
 import CountButtonComponent from './CountButtonComponent';
 
 const RoomType = (props) => {
   const chosenHotel = useSelector((state) => state.global.chosenHotel);
+
+  const isDesktop = useMediaQuery({
+    query: '(max-width: 992px)',
+  });
 
   const roomTypeList = [
     // {
@@ -117,7 +123,7 @@ const RoomType = (props) => {
                               {s === 'Refrigerator' && <MdKitchen size={18} />}
                               {s === 'Mini Bar' && <MdLocalBar size={18} />}
                             </>
-                            <span className="ms-2">{s}</span>
+                            {!isDesktop && <span className="ms-2">{s}</span>}
                           </span>
                         </div>
                       ))}
@@ -133,7 +139,7 @@ const RoomType = (props) => {
               </td>
 
               <td className="open-sans">
-                <div className="fw-bold mb-2">
+                <div className="price fw-bold mb-2">
                   TWD {roomType.price.toLocaleString()}
                 </div>
                 <div style={{ fontSize: 12, color: color.darkGray }}>
@@ -165,6 +171,11 @@ const StyledWrapper = styled.div`
     border-radius: 8px 0px 0px 8px;
     object-fit: cover;
     object-position: center;
+
+    ${device.desktop} {
+      width: 150px;
+      height: 150px;
+    }
   }
 
   .itemContainer {
@@ -191,6 +202,16 @@ const StyledWrapper = styled.div`
     .serviceItem {
       width: 50%;
       font-size: 14px;
+
+      ${device.desktop} {
+        width: 20%;
+      }
+    }
+  }
+
+  .price {
+    ${device.desktop} {
+      font-size: 12px;
     }
   }
 `;

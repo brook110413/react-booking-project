@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import color from '@Style/color';
+import { device } from '@/style/browser';
 
 import { setChosenHotel } from '@Actions/globalAction';
 
@@ -30,7 +31,7 @@ const HotelItem = (props) => {
   }, [filterCondition]);
 
   return (
-    <>
+    <StyledWrapper>
       {hotelList
         .filter((h) => filterData.includes(h.roomType))
         .map((item) => (
@@ -98,7 +99,7 @@ const HotelItem = (props) => {
             </StyledLink>
           </div>
         ))}
-    </>
+    </StyledWrapper>
   );
 };
 
@@ -114,6 +115,12 @@ const StyledLink = styled(Link)`
       transform: scale(1.04);
       transition: all 0.3s ease-in-out;
     }
+  }
+`;
+
+const StyledWrapper = styled.div`
+  ${device.desktop} {
+    margin-top: 48px;
   }
 `;
 

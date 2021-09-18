@@ -5,6 +5,8 @@ import { Image } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
+import { device } from '@/style/browser';
+
 // install Swiper modules
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
@@ -48,6 +50,10 @@ const StyledWrapper = styled.div`
     object-position: center 75%;
     object-fit: cover;
     border-radius: 10px;
+
+    ${device.desktop} {
+      height: 150px;
+    }
   }
 `;
 

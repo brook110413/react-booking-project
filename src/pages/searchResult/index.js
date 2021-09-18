@@ -2,15 +2,21 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 
 import SearchBox from '@Components/SearchBox';
 import color from '@Style/color';
+import { device } from '@/style/browser';
 
 import AsideFilterComponent from './components/AsideFilterComponent';
 import HotelItem from './components/HotelItem';
 
 const SearchResult = () => {
   const searchCondition = useSelector((state) => state.global.searchCondition);
+
+  const isDesktop = useMediaQuery({
+    query: '(max-width: 992px)',
+  });
 
   return (
     <StyledWrapper>
@@ -32,12 +38,15 @@ const SearchResult = () => {
             </StyledStickyAside>
           </Col>
           <Col lg={8}>
-            <div
-              className="h2 fw-bold py-4 m-0 "
-              style={{ visibility: 'hidden' }}
-            >
-              {searchCondition.destination}
-            </div>
+            {!isDesktop && (
+              <div
+                className="h2 fw-bold py-4 m-0 "
+                style={{ visibility: 'hidden' }}
+              >
+                {searchCondition.destination}
+              </div>
+            )}
+
             <HotelItem />
           </Col>
         </Row>
