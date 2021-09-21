@@ -8,24 +8,17 @@ const Header = () => {
   return (
     <StyledWrapper>
       <Container>
-        <StyledNavbar expand="md">
+        <StyledNavbar>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Brand href="#">
             <Image src="images/logo-aloha.svg" />
           </Navbar.Brand>
           <Navbar.Collapse id="navbarScroll">
             <StyledNav>
-              {/* <NavDropdown
-                title={<AiOutlineGlobal size={20} />}
-                id="navbarScrollingDropdown"
-              >
-                <NavDropdown.Item>CN</NavDropdown.Item>
-                <NavDropdown.Item>EN</NavDropdown.Item>
-              </NavDropdown> */}
               <Nav.Link>Sign up</Nav.Link>
+              <Nav.Link>Login</Nav.Link>
             </StyledNav>
           </Navbar.Collapse>
-          <StyledLoginLink>Login</StyledLoginLink>
         </StyledNavbar>
       </Container>
     </StyledWrapper>
@@ -53,15 +46,14 @@ const StyledNav = styled(Nav)`
   margin-left: auto;
   align-items: center;
 
+  a {
+    cursor: default;
+  }
+
   .dropdown-toggle {
     display: flex;
     align-items: center;
   }
-`;
-
-const StyledLoginLink = styled(Nav.Link)`
-  color: ${color.black};
-  margin-left: 48px;
 `;
 
 export default Header;

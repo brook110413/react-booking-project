@@ -78,6 +78,10 @@ const StyledDestinationContainer = styled.div`
     gap: 24px 20px;
   }
 
+  ${device.wideMobile} {
+    gap: 16px;
+  }
+
   .item {
     width: 31.79%;
     height: 78px;
@@ -93,6 +97,10 @@ const StyledDestinationContainer = styled.div`
 
     ${device.tablet} {
       width: 48%;
+    }
+
+    ${device.wideMobile} {
+      width: 100%;
     }
 
     .nation {

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 
 import color from '@Style/color';
+import { device } from '@/style/browser';
 
 const BookingDetail = () => {
   const count = useSelector((state) => state.global.count);
@@ -88,7 +89,10 @@ const StyledWrapper = styled.div`
   background-color: ${color.secondary};
   border-radius: 8px;
   padding: 0 24px;
-  /* margin-bottom: 24px; */
+
+  ${device.tablet} {
+    margin-bottom: 24px;
+  }
 
   .detailWrapper {
     padding: 24px 0;

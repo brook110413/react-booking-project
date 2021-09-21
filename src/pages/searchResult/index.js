@@ -15,7 +15,7 @@ const SearchResult = () => {
   const searchCondition = useSelector((state) => state.global.searchCondition);
 
   const isDesktop = useMediaQuery({
-    query: '(max-width: 992px)',
+    query: '(max-width: 991px)',
   });
 
   return (
@@ -70,6 +70,11 @@ const StyledWrapper = styled.div`
       width: 235px;
       height: 175px;
       border-radius: 8px 0px 0px 8px;
+
+      ${device.wideMobile} {
+        width: 150px;
+        height: 150px;
+      }
     }
 
     .hotelItemMain {
@@ -78,6 +83,10 @@ const StyledWrapper = styled.div`
       display: flex;
       flex-direction: column;
       gap: 16px;
+
+      ${device.wideMobile} {
+        padding: 8px 8px 0;
+      }
 
       .hotelItemLocation {
         font-size: 12px;
@@ -89,6 +98,23 @@ const StyledWrapper = styled.div`
         font-size: 12px;
         padding: 8px;
         margin-right: 4px;
+      }
+    }
+
+    .hotelItemName {
+      font-size: 24px;
+
+      ${device.wideMobile} {
+        font-size: 16px;
+        margin-top: 8px;
+      }
+    }
+
+    .hotelCost {
+      font-size: 24px;
+
+      ${device.wideMobile} {
+        font-size: 16px;
       }
     }
   }
@@ -104,6 +130,10 @@ const StyledSearchBoxWrapper = styled.div`
 const StyledStickyAside = styled.div`
   position: sticky;
   top: 190px;
+
+  ${device.desktop} {
+    text-align: center;
+  }
 `;
 
 SearchResult.propTypes = {};

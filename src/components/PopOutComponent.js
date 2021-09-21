@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 
+import { device } from '@/style/browser';
+
 import { setCount } from '@Actions/globalAction';
 
 const PopOutComponent = () => {
@@ -93,12 +95,21 @@ const StyledWrapper = styled.div`
       width: 126px;
       height: 56px;
     }
+
+    ${device.wideMobile} {
+      margin-top: 16px;
+    }
   }
 `;
 
 const StyledContainer = styled(Container)`
   display: flex;
   justify-content: space-between;
+
+  ${device.wideMobile} {
+    flex-direction: column;
+    align-items: flex-end;
+  }
 `;
 
 PopOutComponent.propTypes = {};

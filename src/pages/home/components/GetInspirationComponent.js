@@ -51,8 +51,16 @@ const StyledInspirationContainer = styled.div`
   display: flex;
   gap: 30px;
 
+  ${device.wideMobile} {
+    flex-direction: column;
+  }
+
   .item {
     width: 31.79%;
+
+    ${device.wideMobile} {
+      width: 100%;
+    }
 
     img {
       object-fit: cover;

@@ -2,11 +2,15 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { MdAdd, MdRemove } from 'react-icons/md';
+import { useMediaQuery } from 'react-responsive';
 
 import { setCount } from '@Actions/globalAction';
 
-const CountButtonComponent = (props) => {
+const CountButtonComponent = () => {
   const dispatch = useDispatch();
+  const isWideMobile = useMediaQuery({
+    query: '(max-width: 525px)',
+  });
 
   const count = useSelector((state) => state.global.count);
 
@@ -26,19 +30,20 @@ const CountButtonComponent = (props) => {
     <StyledWrapper>
       <button
         type="button"
-        className="me-3"
+        className={!isWideMobile ? 'me-3' : null}
         onClick={() => minusCount()}
         disabled={count <= 0}
       >
-        <MdRemove size={24} />
+        <MdRemove size={isWideMobile ? 16 : 24} />
       </button>
       <div className="count">{count}</div>
-      <button type="button" className="ms-3" onClick={addCount}>
-        <MdAdd size={24} />
+      <button
+        type="button"
+        className={!isWideMobile ? 'ms-3' : null}
+        onClick={addCount}
+      >
+        <MdAdd size={isWideMobile ? 16 : 24} />
       </button>
-      {/* <button>
-        <MdCheck size={24} />
-      </button> */}
     </StyledWrapper>
   );
 };

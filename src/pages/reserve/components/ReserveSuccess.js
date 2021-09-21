@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 
 import color from '@/style/color';
+import { device } from '@/style/browser';
 
 const ReserveSuccess = () => {
   const history = useHistory();
@@ -67,10 +68,10 @@ const ReserveSuccess = () => {
           <div className="contentItem" key={`area-${i}`}>
             {r.area.map((a) => (
               <Row key={a.title}>
-                <Col lg={4}>
+                <Col xs={4}>
                   <div className="contentTitle">{a.title}</div>
                 </Col>
-                <Col lg={8}>
+                <Col xs={8}>
                   <div className="contentDetail">{a.content}</div>
                 </Col>
               </Row>
@@ -92,6 +93,11 @@ const StyledWrapper = styled.div`
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 32px;
+
+    ${device.wideMobile} {
+      font-size: 24px;
+      text-align: center;
+    }
   }
 
   .content {

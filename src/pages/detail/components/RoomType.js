@@ -24,7 +24,11 @@ const RoomType = (props) => {
   const chosenHotel = useSelector((state) => state.global.chosenHotel);
 
   const isDesktop = useMediaQuery({
-    query: '(max-width: 992px)',
+    query: '(max-width: 991px)',
+  });
+
+  const isWideMobile = useMediaQuery({
+    query: '(max-width: 525px)',
   });
 
   const roomTypeList = [
@@ -101,34 +105,43 @@ const RoomType = (props) => {
                       className="ItemImg"
                     />
                   </div>
-                  <div className="itemContainer">
-                    <div className="ItemTitle">{roomType.name}</div>
-                    <div className="ItemType">{roomType.type}</div>
 
-                    <div className="ItemServiceContainer">
-                      {roomType.service.map((s) => (
-                        <div key={s} className="serviceItem">
-                          <span className="d-flex align-items-center">
-                            <>
-                              {s === 'Wi-fi' && <MdWifi size={18} />}
-                              {s === 'Breakfast' && <MdRestaurant size={18} />}
-                              {s === 'Television' && <MdTv size={18} />}
-                              {s === 'Air Conditioner' && (
-                                <MdAcUnit size={18} />
-                              )}
-                              {s === 'Room Service' && (
-                                <MdRoomService size={18} />
-                              )}
-                              {s === 'Smoke Free' && <MdSmokeFree size={18} />}
-                              {s === 'Refrigerator' && <MdKitchen size={18} />}
-                              {s === 'Mini Bar' && <MdLocalBar size={18} />}
-                            </>
-                            {!isDesktop && <span className="ms-2">{s}</span>}
-                          </span>
-                        </div>
-                      ))}
+                  {!isWideMobile && (
+                    <div className="itemContainer">
+                      <div className="ItemTitle">{roomType.name}</div>
+                      <div className="ItemType">{roomType.type}</div>
+
+                      <div className="ItemServiceContainer">
+                        {roomType.service.map((s) => (
+                          <div key={s} className="serviceItem">
+                            <span className="d-flex align-items-center">
+                              <>
+                                {s === 'Wi-fi' && <MdWifi size={18} />}
+                                {s === 'Breakfast' && (
+                                  <MdRestaurant size={18} />
+                                )}
+                                {s === 'Television' && <MdTv size={18} />}
+                                {s === 'Air Conditioner' && (
+                                  <MdAcUnit size={18} />
+                                )}
+                                {s === 'Room Service' && (
+                                  <MdRoomService size={18} />
+                                )}
+                                {s === 'Smoke Free' && (
+                                  <MdSmokeFree size={18} />
+                                )}
+                                {s === 'Refrigerator' && (
+                                  <MdKitchen size={18} />
+                                )}
+                                {s === 'Mini Bar' && <MdLocalBar size={18} />}
+                              </>
+                              {!isDesktop && <span className="ms-2">{s}</span>}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </td>
 

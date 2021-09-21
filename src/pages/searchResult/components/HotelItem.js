@@ -3,14 +3,19 @@ import styled from 'styled-components';
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 
 import color from '@Style/color';
 import { device } from '@/style/browser';
 
 import { setChosenHotel } from '@Actions/globalAction';
 
-const HotelItem = (props) => {
+const HotelItem = () => {
   const dispatch = useDispatch();
+
+  const isWideMobile = useMediaQuery({
+    query: '(max-width: 525px)',
+  });
 
   const hotelList = useSelector((state) => state.global.hotelList);
   const filterCondition = useSelector((state) => state.global.filterCondition);
@@ -50,23 +55,23 @@ const HotelItem = (props) => {
                       <span style={{ color: color.primary }}>
                         {item.location}
                       </span>
-                      <span>・{item.distance}</span>
+                      {!isWideMobile && <span>・{item.distance}</span>}
                     </div>
-                    <div className="d-flex align-items-center">
-                      {item.rankIcon.map((icon, i) => (
-                        <span key={`icon-${i}`}>{icon}</span>
-                      ))}
-                      <span
-                        className="rank open-sans ms-1"
-                        style={{ color: color.gray }}
-                      >
-                        {item.rank}
-                      </span>
-                    </div>
+                    {!isWideMobile && (
+                      <div className="d-flex align-items-center">
+                        {item.rankIcon.map((icon, i) => (
+                          <span key={`icon-${i}`}>{icon}</span>
+                        ))}
+                        <span
+                          className="rank open-sans ms-1"
+                          style={{ color: color.gray }}
+                        >
+                          {item.rank}
+                        </span>
+                      </div>
+                    )}
                   </div>
-                  <div className="hotelItemName h4 m-0 fw-bold">
-                    {item.name}
-                  </div>
+                  <div className="hotelItemName fw-bold">{item.name}</div>
                 </div>
 
                 <div style={{ color: color.gray }}>
@@ -80,19 +85,24 @@ const HotelItem = (props) => {
                 </div>
 
                 <div className="d-flex justify-content-between">
-                  <div className="d-flex align-items-start">
-                    {item.tags.map((tag, i) => (
-                      <div className="hotelTag" key={`tag-${i}`}>
-                        {tag}
-                      </div>
-                    ))}
-                  </div>
+                  {!isWideMobile && (
+                    <div className="d-flex align-items-start">
+                      {item.tags.map((tag, i) => (
+                        <div className="hotelTag" key={`tag-${i}`}>
+                          {tag}
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
                   <div className="text-end">
-                    <div className="open-sans" style={{ fontSize: 12 }}>
-                      per night
-                    </div>
-                    <div className="h4 m-0 fw-bold">{`TWD ${item.cost.toLocaleString()}`}</div>
+                    {!isWideMobile && (
+                      <div className="open-sans" style={{ fontSize: 12 }}>
+                        per night
+                      </div>
+                    )}
+
+                    <div className="hotelCost m-0 fw-bold">{`TWD ${item.cost.toLocaleString()}`}</div>
                   </div>
                 </div>
               </div>

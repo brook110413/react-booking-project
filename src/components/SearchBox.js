@@ -207,6 +207,20 @@ const StyledSearchBoxContainer = styled.div`
     max-width: 570px;
   }
 
+  ${device.wideMobile} {
+    max-width: 370px;
+
+    ${(props) =>
+      (props.pathname === '/searchResult' || props.pathname === '/detail') &&
+      css`
+        padding: 8px 0;
+      `}
+  }
+
+  ${device.mobile} {
+    max-width: 330px;
+  }
+
   .react-datepicker__tab-loop {
     position: absolute;
     left: 0;
@@ -254,11 +268,14 @@ const StyledForm = styled(Form)`
     ${(props) =>
       (props.pathname === '/searchResult' || props.pathname === '/detail') &&
       css`
-        /* justify-content: center; */
         flex-direction: row;
         gap: 28px;
-        /* gap: 0; */
       `}
+  }
+
+  ${device.wideMobile} {
+    flex-direction: column;
+    gap: 8px;
   }
 `;
 

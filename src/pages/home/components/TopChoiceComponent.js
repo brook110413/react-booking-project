@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SwiperCore, { Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from 'styled-components';
@@ -50,9 +50,15 @@ const TopChoiceComponent = (props) => {
     query: '(max-width: 768px)',
   });
 
-  useEffect(() => {
-    console.log(isTablet);
-  }, [isTablet]);
+  const isWideMobile = useMediaQuery({
+    query: '(max-width: 525px)',
+  });
+
+  const renderSidesPerView = () => {
+    if (isWideMobile) return 1.4;
+    if (isTablet) return 2.6;
+    return 4;
+  };
 
   return (
     <StyledWrapper>
@@ -60,8 +66,7 @@ const TopChoiceComponent = (props) => {
 
       <Swiper
         spaceBetween={30}
-        slidesPerView={isTablet ? 2.6 : 4}
-        // slidesPerView={4}
+        slidesPerView={renderSidesPerView()}
         loop={true}
         autoplay={{
           delay: 2000,

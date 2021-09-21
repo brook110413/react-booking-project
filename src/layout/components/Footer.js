@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Container } from 'react-bootstrap';
 
 import color from '@/style/color';
+import { device } from '@Style/browser';
 
 const Footer = (props) => {
   const list = ['FAQs', 'Terms of use', 'Privacy policy'];
@@ -26,10 +27,13 @@ const Footer = (props) => {
 const StyledWrapper = styled.div`
   background-color: ${color.primary};
   color: ${color.white};
-  /* margin-top: 24px; */
 
   .copyright {
     margin-right: 64px;
+
+    ${device.wideMobile} {
+      margin: 0;
+    }
   }
 `;
 
@@ -38,6 +42,12 @@ const StyledContainer = styled(Container)`
   display: flex;
   justify-content: space-between;
   width: 100%;
+
+  ${device.wideMobile} {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 16px;
+  }
 `;
 
 Footer.propTypes = {};

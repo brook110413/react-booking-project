@@ -4,8 +4,9 @@ import { Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
 import color from '@Style/color';
+import { device } from '@/style/browser';
 
-const Main = (props) => {
+const Main = () => {
   const chosenHotel = useSelector((state) => state.global.chosenHotel);
 
   return (
@@ -13,7 +14,7 @@ const Main = (props) => {
       <Row>
         <Col lg={7}>
           <div className="hotelMain">
-            <div className="d-flex align-items-center mb-2">
+            <div className="hotelMainTitle">
               <div className="hotelTitle">{chosenHotel.name}</div>
               <div className="me-1">
                 {chosenHotel.rankIcon.map((icon, i) => (
@@ -56,6 +57,17 @@ const Main = (props) => {
 const StyledWrapper = styled.div`
   .hotelMain {
     padding: 24px 0 72px;
+
+    .hotelMainTitle {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+
+      ${device.wideMobile} {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
 
     .hotelTitle {
       font-size: 32px;

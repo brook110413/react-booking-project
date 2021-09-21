@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import { useMediaQuery } from 'react-responsive';
 
 import color from '@Style/color';
+import { device } from '@/style/browser';
 import SearchBox from '@Components/SearchBox';
 
 import TopChoiceComponent from './components/TopChoiceComponent';
@@ -77,6 +78,11 @@ const StyledWrapper = styled.div`
     font-weight: bold;
     text-align: center;
     line-height: 1.2;
+
+    ${device.wideMobile} {
+      font-size: 32px;
+      line-height: 1.5;
+    }
   }
 
   .title {

@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
 import color from '@Style/color';
+import { device } from '@/style/browser';
+
 import { setReserveInfo } from '@Actions/globalAction';
 
 const ReserveForm = ({ setPage }) => {
@@ -67,6 +69,10 @@ const ReserveForm = ({ setPage }) => {
 };
 
 const StyledWrapper = styled.div`
+  ${device.tablet} {
+    margin-bottom: 24px;
+  }
+
   .FormTitle {
     font-size: 32px;
     font-weight: bold;

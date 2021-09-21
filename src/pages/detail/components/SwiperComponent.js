@@ -4,6 +4,7 @@ import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
 import { Image } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useMediaQuery } from 'react-responsive';
 
 import { device } from '@/style/browser';
 
@@ -15,11 +16,25 @@ const SwiperComponent = (props) => {
 
   const imgList = ['Rachada1', 'Rachada2', 'Rachada3', 'Rachada4'];
 
+  const isTablet = useMediaQuery({
+    query: '(max-width: 768px)',
+  });
+
+  const isWideMobile = useMediaQuery({
+    query: '(max-width: 525px)',
+  });
+
+  const renderSidesPerView = () => {
+    if (isWideMobile) return 1;
+    if (isTablet) return 2.6;
+    return 4;
+  };
+
   return (
     <StyledWrapper>
       <Swiper
         spaceBetween={30}
-        slidesPerView={4}
+        slidesPerView={renderSidesPerView()}
         loop={true}
         autoplay={{
           delay: 2500,
