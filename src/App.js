@@ -18,11 +18,11 @@ const App = (props) => {
         <Layout>
           <StyledMain>
             <Switch>
-              <Redirect exact path="/" to="/home" />
               <Route path="/home" component={Home} />
               <Route path="/searchResult" component={SearchResult} />
               <Route path="/detail" component={Detail} />
               <Route path="/reserve" component={Reserve} />
+              <Redirect path="*" to="/home" />
             </Switch>
           </StyledMain>
         </Layout>
