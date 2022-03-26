@@ -7,6 +7,7 @@ import { device } from '@Style/browser';
 
 const Footer = (props) => {
   const list = ['FAQs', 'Terms of use', 'Privacy policy'];
+  console.log('123');
 
   return (
     <StyledWrapper>
