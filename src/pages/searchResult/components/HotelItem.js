@@ -46,7 +46,12 @@ const HotelItem = () => {
             onClick={() => dispatch(setChosenHotel(item))}
           >
             <StyledLink to="/detail">
-              <Image src={`images/${item.img}.jpg`} className="hotelItemImg" />
+              <StyledImgWrapper>
+                <Image
+                  src={`images/${item.img}.jpg`}
+                  className="hotelItemImg"
+                />
+              </StyledImgWrapper>
 
               <div className="hotelItemMain">
                 <div>
@@ -113,6 +118,12 @@ const HotelItem = () => {
   );
 };
 
+const StyledImgWrapper = styled.div`
+  overflow: hidden;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+`;
+
 const StyledLink = styled(Link)`
   display: flex;
   margin-bottom: 24px;
@@ -122,7 +133,7 @@ const StyledLink = styled(Link)`
     box-shadow: 5px 5px 5px ${color.secondary};
 
     img {
-      transform: scale(1.04);
+      transform: scale(1.09);
       transition: all 0.3s ease-in-out;
     }
   }

@@ -27,7 +27,6 @@ const SearchResult = () => {
       </StyledSearchBoxWrapper>
 
       <Container>
-        {/* <div className="h2 fw-bold py-4 m-0">{searchCondition.destination}</div> */}
         <Row>
           <Col lg={4}>
             <StyledStickyAside>
