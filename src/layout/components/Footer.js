@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Container } from 'react-bootstrap';
 
 import color from '@/style/color';
 import { device } from '@Style/browser';
 
-const Footer = (props) => {
-  const list = ['FAQs', 'Terms of use', 'Privacy policy'];
+const list = ['FAQs', 'Terms of use', 'Privacy policy'];
+
+const Footer = () => {
+  const [currentYear, setCurrentYear] = useState(null);
+
+  useEffect(() => {
+    const date = new Date();
+    const year = date.getFullYear();
+    if (year) {
+      setCurrentYear(year);
+    } else {
+      setCurrentYear(2023);
+    }
+  }, []);
 
   return (
     <StyledWrapper>
       <StyledContainer>
         <span className="copyright">
-          © 2021 ALOHA, Inc. All rights reserved.
+          © {currentYear} ALOHA, Inc. All rights reserved.
         </span>
         <ul className="d-flex" style={{ gap: 24 }}>
           {list.map((item) => (
