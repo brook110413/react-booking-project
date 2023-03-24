@@ -137,6 +137,10 @@ const StyledLink = styled(Link)`
       transition: all 0.3s ease-in-out;
     }
   }
+
+  img {
+    transition: all 0.3s ease-in-out;
+  }
 `;
 
 const StyledWrapper = styled.div`
